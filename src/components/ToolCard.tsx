@@ -13,7 +13,11 @@ interface ToolCardProps {
 export default function ToolCard({ href, icon, title, description, color, showButton = true }: ToolCardProps) {
     return (
         <Link href={href} className="card-link">
-            <div className="card" style={{ borderLeft: color ? `4px solid ${color}` : undefined }}>
+            <div className="card" style={{
+                borderLeft: color ? `4px solid ${color}` : undefined,
+                '--card-color': color || 'var(--color-primary)',
+                '--card-glow': color ? `${color}66` : 'rgba(242, 132, 130, 0.4)'
+            } as React.CSSProperties}>
                 <div className="card-icon" style={color ? { backgroundColor: `${color}1A`, color: color } : undefined}>
                     {icon}
                 </div>

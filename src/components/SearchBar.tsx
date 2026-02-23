@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { searchTaxBoxes, TaxBox } from '@/data/tax-boxes';
+import { SearchIcon } from './SVGIcons';
 
 interface SearchBarProps {
     isHero?: boolean;
@@ -45,7 +46,7 @@ export default function SearchBar({ isHero = false }: SearchBarProps) {
 
     return (
         <div className="search-container" ref={wrapperRef}>
-            <span className="search-icon">🔍</span>
+            <span className="search-icon"><SearchIcon size={20} /></span>
             <input
                 type="text"
                 className={isHero ? 'search-input' : 'search-input-page'}

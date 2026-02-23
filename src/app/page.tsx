@@ -6,7 +6,7 @@ import SearchBar from '@/components/SearchBar';
 import { taxBoxes } from '@/data/tax-boxes';
 import { categories } from '@/data/categories';
 import { forms } from '@/data/forms';
-import { CalculatorIcon, ScaleIcon, BuildingIcon, CoinsIcon, FileIcon, CalendarIcon } from '@/components/SVGIcons';
+import { CalculatorIcon, ScaleIcon, BuildingIcon, CoinsIcon, FileIcon, CalendarIcon, BarChartIcon, FileTextIcon } from '@/components/SVGIcons';
 import ToolCard from '@/components/ToolCard';
 
 export default function HomePage() {
@@ -107,8 +107,8 @@ export default function HomePage() {
       </section>
 
       {/* Categories Section */}
-      <section className="section" style={{ background: 'var(--color-bg-secondary)' }}>
-        <div className="container">
+      <section className="section">
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <h2 className="section-title">Explorer par catégorie</h2>
           <p className="section-subtitle">
             Parcourez les cases fiscales par thématique
@@ -131,13 +131,16 @@ export default function HomePage() {
 
       {/* Key Info Section */}
       <section className="section">
-        <div className="container">
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <h2 className="section-title">Informations essentielles — Revenus 2025</h2>
           <p className="section-subtitle">Les chiffres clés pour votre déclaration</p>
 
           <div className="cards-grid">
             <div className="card">
-              <h3 className="card-title">📊 Barème de l&apos;impôt 2026</h3>
+              <h3 className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+                <BarChartIcon size={24} style={{ color: 'var(--color-primary)' }} />
+                Barème de l&apos;impôt 2026
+              </h3>
               <div style={{ fontSize: 'var(--text-sm)', lineHeight: 1.8 }}>
                 <div className="result-row">
                   <span className="result-row-label">Jusqu&apos;à 11 600 €</span>
@@ -166,7 +169,10 @@ export default function HomePage() {
             </div>
 
             <div className="card">
-              <h3 className="card-title">📅 Dates limites 2026</h3>
+              <h3 className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+                <CalendarIcon size={24} style={{ color: 'var(--color-primary)' }} />
+                Dates limites 2026
+              </h3>
               <div style={{ fontSize: 'var(--text-sm)', lineHeight: 1.8 }}>
                 <div className="result-row">
                   <span className="result-row-label">Ouverture en ligne</span>
@@ -195,7 +201,10 @@ export default function HomePage() {
             </div>
 
             <div className="card">
-              <h3 className="card-title">📝 Seuils micro-entreprise</h3>
+              <h3 className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+                <FileTextIcon size={24} style={{ color: 'var(--color-primary)' }} />
+                Seuils micro-entreprise
+              </h3>
               <div style={{ fontSize: 'var(--text-sm)', lineHeight: 1.8 }}>
                 <div className="result-row">
                   <span className="result-row-label">Micro-BIC vente</span>

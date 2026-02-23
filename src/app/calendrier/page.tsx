@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { calendarEvents, getDepartmentZone } from '@/data/calendar';
+import { CalendarIcon, HomeIcon } from '@/components/SVGIcons';
 
 export default function CalendrierPage() {
     const [dept, setDept] = useState('');
@@ -15,7 +16,10 @@ export default function CalendrierPage() {
     return (
         <>
             <div className="page-header">
-                <h1 className="page-title">📅 Calendrier fiscal 2026</h1>
+                <h1 className="page-title" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--space-3)' }}>
+                    <CalendarIcon size={32} style={{ color: 'var(--color-primary)' }} />
+                    Calendrier fiscal 2026
+                </h1>
                 <p className="page-description">
                     Toutes les dates clés pour la déclaration des revenus 2025
                 </p>
@@ -24,7 +28,10 @@ export default function CalendrierPage() {
             <div className="container" style={{ paddingBottom: 'var(--space-16)', maxWidth: 800 }}>
                 {/* Department selector */}
                 <div className="card mb-8">
-                    <h3 style={{ fontWeight: 600, marginBottom: 'var(--space-3)' }}>🏠 Votre date limite personnelle</h3>
+                    <h3 style={{ fontWeight: 600, marginBottom: 'var(--space-3)', display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+                        <HomeIcon size={20} style={{ color: 'var(--color-primary)' }} />
+                        Votre date limite personnelle
+                    </h3>
                     <div className="form-group" style={{ marginBottom: 0 }}>
                         <label className="form-label">Numéro de votre département</label>
                         <input

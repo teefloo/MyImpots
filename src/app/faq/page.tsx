@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { faqEntries, faqCategories } from '@/data/faq';
 import { Accordion } from '@/components/Accordion';
+import { SearchIcon, HelpCircleIcon } from '@/components/SVGIcons';
 
 export default function FaqPage() {
     const [openId, setOpenId] = useState<string | null>(null);
@@ -21,7 +22,10 @@ export default function FaqPage() {
     return (
         <>
             <div className="page-header">
-                <h1 className="page-title">❓ Foire aux questions</h1>
+                <h1 className="page-title" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--space-3)' }}>
+                    <HelpCircleIcon size={32} style={{ color: 'var(--color-primary)' }} />
+                    Foire aux questions
+                </h1>
                 <p className="page-description">
                     Réponses aux questions les plus fréquentes sur la déclaration de revenus
                 </p>
@@ -30,7 +34,7 @@ export default function FaqPage() {
             <div className="container" style={{ paddingBottom: 'var(--space-16)', maxWidth: 800 }}>
                 {/* Search */}
                 <div className="search-container mb-6">
-                    <span className="search-icon">🔍</span>
+                    <span className="search-icon"><SearchIcon size={20} /></span>
                     <input
                         type="text"
                         className="search-input-page"
@@ -75,7 +79,9 @@ export default function FaqPage() {
 
                 {filtered.length === 0 && (
                     <div className="text-center" style={{ padding: 'var(--space-12) 0', color: 'var(--color-text-secondary)' }}>
-                        <p style={{ fontSize: 'var(--text-xl)' }}>🔍</p>
+                        <div style={{ marginBottom: 'var(--space-4)', display: 'flex', justifyContent: 'center' }}>
+                            <SearchIcon size={48} style={{ color: 'var(--color-primary)', opacity: 0.5 }} />
+                        </div>
                         <p>Aucune question ne correspond à votre recherche</p>
                     </div>
                 )}

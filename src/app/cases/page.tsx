@@ -7,6 +7,7 @@ import { searchTaxBoxes, taxBoxes, TaxBox } from '@/data/tax-boxes';
 import { categories } from '@/data/categories';
 import { forms } from '@/data/forms';
 import BoxCard from '@/components/BoxCard';
+import { SearchIcon } from '@/components/SVGIcons';
 
 function CasesContent() {
     const searchParams = useSearchParams();
@@ -39,7 +40,7 @@ function CasesContent() {
     return (
         <>
             <div className="search-container mb-8">
-                <span className="search-icon">🔍</span>
+                <span className="search-icon"><SearchIcon size={20} /></span>
                 <input
                     type="text"
                     className="search-input-page"
@@ -84,7 +85,9 @@ function CasesContent() {
 
                 {displayedBoxes.length === 0 && (
                     <div className="text-center" style={{ padding: 'var(--space-16) 0', color: 'var(--color-text-secondary)' }}>
-                        <p style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-4)' }}>🔍</p>
+                        <div style={{ marginBottom: 'var(--space-4)', display: 'flex', justifyContent: 'center' }}>
+                            <SearchIcon size={48} style={{ color: 'var(--color-primary)', opacity: 0.5 }} />
+                        </div>
                         <p style={{ fontSize: 'var(--text-lg)', fontWeight: 600 }}>Aucune case trouvée</p>
                         <p style={{ fontSize: 'var(--text-sm)' }}>Essayez un autre terme de recherche ou modifiez les filtres</p>
                     </div>
