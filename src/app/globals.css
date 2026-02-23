@@ -249,6 +249,130 @@ img {
   height: auto;
 }
 
+/* ═══════════════════════════════════ */
+/* UTILITY CLASSES                     */
+/* ═══════════════════════════════════ */
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.text-error {
+  color: var(--color-error);
+}
+
+.text-warning {
+  color: var(--color-warning);
+}
+
+.text-info {
+  color: var(--color-info);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.gap-2 {
+  gap: var(--space-2);
+}
+
+.gap-3 {
+  gap: var(--space-3);
+}
+
+.gap-4 {
+  gap: var(--space-4);
+}
+
+.mt-4 {
+  margin-top: var(--space-4);
+}
+
+.mb-2 {
+  margin-bottom: var(--space-2);
+}
+
+.mb-4 {
+  margin-bottom: var(--space-4);
+}
+
+.w-full {
+  width: 100%;
+}
+
+/* Background Blobs */
+.bg-blobs-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -2;
+  overflow: hidden;
+  background: var(--color-bg);
+  pointer-events: none;
+}
+
+.bg-blob {
+  position: absolute;
+  border-radius: var(--radius-organic-1);
+}
+
+.blob-1 {
+  top: -20%;
+  left: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: var(--color-primary-light);
+  filter: blur(60px);
+  opacity: 0.8;
+  animation: morph 20s ease-in-out infinite alternate;
+}
+
+.blob-2 {
+  bottom: -20%;
+  right: -10%;
+  width: 70vw;
+  height: 70vw;
+  background: var(--color-accent-light);
+  border-radius: var(--radius-organic-2);
+  filter: blur(80px);
+  opacity: 0.6;
+  animation: morph 25s ease-in-out infinite alternate-reverse;
+}
+
+.blob-3 {
+  top: 30%;
+  left: 40%;
+  width: 40vw;
+  height: 40vw;
+  background: var(--color-info-light);
+  filter: blur(50px);
+  opacity: 0.5;
+  animation: morph 15s ease-in-out infinite alternate;
+}
+
+.main-content {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
 /* Container */
 .container {
   width: 100%;
@@ -696,11 +820,14 @@ img {
   padding: var(--space-6);
   transition: all var(--transition-base);
   box-shadow: var(--shadow-md), var(--glass-highlight);
-  height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
+}
+
+.cards-grid .card {
+  height: 100%;
 }
 
 .card::after {

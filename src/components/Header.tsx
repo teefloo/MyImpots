@@ -28,7 +28,7 @@ export default function Header() {
     }, [pathname]);
 
     return (
-        <header className="header" style={{ display: 'flex', justifyContent: 'center' }}>
+        <header className="header flex-center">
             <div className="header-inner" style={{
                 transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
                 width: showSearch ? '100%' : 'fit-content',

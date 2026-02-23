@@ -19,42 +19,42 @@ export default function HomePage() {
       title: 'Simulateur d\'impôt',
       description: 'Calculez votre impôt sur le revenu avec le barème 2026 (revenus 2025)',
       href: '/outils/simulateur',
-      color: '#3b82f6',
+      color: 'info',
     },
     {
       icon: <ScaleIcon />,
       title: 'Frais réels vs 10%',
       description: 'Comparez la déduction forfaitaire et les frais réels',
       href: '/outils/frais-reels',
-      color: '#8b5cf6',
+      color: 'primary',
     },
     {
       icon: <BuildingIcon />,
       title: 'Micro vs Réel',
       description: 'Micro-BIC/BNC ou régime réel ? Trouvez le plus avantageux',
       href: '/outils/micro-vs-reel',
-      color: '#f59e0b',
+      color: 'warning',
     },
     {
       icon: <CoinsIcon />,
       title: 'Crédits d\'impôt',
       description: 'Simulez vos réductions et crédits d\'impôt',
       href: '/outils/credits-impot',
-      color: '#10b981',
+      color: 'success',
     },
     {
       icon: <FileIcon />,
       title: 'Documents nécessaires',
       description: 'Checklist des pièces à réunir avant de déclarer',
       href: '/outils/documents',
-      color: '#ec4899',
+      color: 'error',
     },
     {
       icon: <CalendarIcon />,
       title: 'Calendrier fiscal',
       description: 'Toutes les dates clés de la déclaration 2026',
       href: '/calendrier',
-      color: '#06b6d4',
+      color: 'accent',
     },
   ];
 
@@ -137,14 +137,14 @@ export default function HomePage() {
 
           <div className="cards-grid">
             <div className="card">
-              <h3 className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
-                <BarChartIcon size={24} style={{ color: 'var(--color-primary)' }} />
+              <h3 className="card-title flex-align-center gap-2">
+                <BarChartIcon size={24} className="text-primary" />
                 Barème de l&apos;impôt 2026
               </h3>
-              <div style={{ fontSize: 'var(--text-sm)', lineHeight: 1.8 }}>
+              <div className="text-sm" style={{ lineHeight: 1.8 }}>
                 <div className="result-row">
                   <span className="result-row-label">Jusqu&apos;à 11 600 €</span>
-                  <span className="result-row-value" style={{ color: 'var(--color-success)' }}>0 %</span>
+                  <span className="result-row-value text-success">0 %</span>
                 </div>
                 <div className="result-row">
                   <span className="result-row-label">11 601 € à 29 579 €</span>
@@ -160,20 +160,20 @@ export default function HomePage() {
                 </div>
                 <div className="result-row">
                   <span className="result-row-label">Au-delà de 181 917 €</span>
-                  <span className="result-row-value" style={{ color: 'var(--color-error)' }}>45 %</span>
+                  <span className="result-row-value text-error">45 %</span>
                 </div>
               </div>
-              <Link href="/outils/simulateur" className="btn btn-primary mt-4" style={{ width: '100%' }}>
+              <Link href="/outils/simulateur" className="btn btn-primary mt-4 w-full">
                 Simuler mon impôt →
               </Link>
             </div>
 
             <div className="card">
-              <h3 className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
-                <CalendarIcon size={24} style={{ color: 'var(--color-primary)' }} />
+              <h3 className="card-title flex-align-center gap-2">
+                <CalendarIcon size={24} className="text-primary" />
                 Dates limites 2026
               </h3>
-              <div style={{ fontSize: 'var(--text-sm)', lineHeight: 1.8 }}>
+              <div className="text-sm" style={{ lineHeight: 1.8 }}>
                 <div className="result-row">
                   <span className="result-row-label">Ouverture en ligne</span>
                   <span className="result-row-value">9 avril</span>
@@ -195,17 +195,17 @@ export default function HomePage() {
                   <span className="result-row-value">4 juin</span>
                 </div>
               </div>
-              <Link href="/calendrier" className="btn btn-primary mt-4" style={{ width: '100%' }}>
+              <Link href="/calendrier" className="btn btn-primary mt-4 w-full">
                 Voir le calendrier complet →
               </Link>
             </div>
 
             <div className="card">
-              <h3 className="card-title" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
-                <FileTextIcon size={24} style={{ color: 'var(--color-primary)' }} />
+              <h3 className="card-title flex-align-center gap-2">
+                <FileTextIcon size={24} className="text-primary" />
                 Seuils micro-entreprise
               </h3>
-              <div style={{ fontSize: 'var(--text-sm)', lineHeight: 1.8 }}>
+              <div className="text-sm" style={{ lineHeight: 1.8 }}>
                 <div className="result-row">
                   <span className="result-row-label">Micro-BIC vente</span>
                   <span className="result-row-value">188 700 €</span>
@@ -227,7 +227,7 @@ export default function HomePage() {
                   <span className="result-row-value">34 %</span>
                 </div>
               </div>
-              <Link href="/outils/micro-vs-reel" className="btn btn-primary mt-4" style={{ width: '100%' }}>
+              <Link href="/outils/micro-vs-reel" className="btn btn-primary mt-4 w-full">
                 Comparer micro vs réel →
               </Link>
             </div>

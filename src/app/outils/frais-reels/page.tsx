@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ABATTEMENT_10_POURCENT_MIN, ABATTEMENT_10_POURCENT_MAX } from '@/data/tax-rates';
+import { ScaleIcon } from '@/components/SVGIcons';
 
 export default function FraisReelsPage() {
     const [salaire, setSalaire] = useState('');
@@ -33,7 +34,10 @@ export default function FraisReelsPage() {
     return (
         <>
             <div className="page-header">
-                <h1 className="page-title">⚖️ Frais réels vs abattement 10 %</h1>
+                <h1 className="page-title flex-center gap-3">
+                    <ScaleIcon size={32} className="text-primary" />
+                    Frais réels vs abattement 10 %
+                </h1>
                 <p className="page-description">
                     Déterminez s&apos;il est plus avantageux de déduire vos frais réels ou de garder l&apos;abattement forfaitaire
                 </p>

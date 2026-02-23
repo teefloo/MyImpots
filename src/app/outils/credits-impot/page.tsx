@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { PLAFOND_AVANTAGES_FISCAUX } from '@/data/tax-rates';
+import { CoinsIcon } from '@/components/SVGIcons';
 
 export default function CreditsImpotPage() {
     const [emploiDomicile, setEmploiDomicile] = useState('');
@@ -50,7 +51,10 @@ export default function CreditsImpotPage() {
     return (
         <>
             <div className="page-header">
-                <h1 className="page-title">💰 Simulateur de crédits et réductions d&apos;impôt</h1>
+                <h1 className="page-title flex-center gap-3">
+                    <CoinsIcon size={32} className="text-primary" />
+                    Simulateur de crédits et réductions d&apos;impôt
+                </h1>
                 <p className="page-description">
                     Estimez vos avantages fiscaux et vérifiez le plafonnement des niches fiscales
                 </p>
@@ -66,7 +70,7 @@ export default function CreditsImpotPage() {
                             <input type="number" className="form-input" placeholder="Ex : 40000" value={revenuImposable} onChange={(e) => setRevenuImposable(e.target.value)} min="0" />
                         </div>
 
-                        <h3 style={{ fontWeight: 600, fontSize: 'var(--text-sm)', marginTop: 'var(--space-4)', marginBottom: 'var(--space-3)', color: 'var(--color-primary)' }}>
+                        <h3 className="text-primary mt-4 mb-3" style={{ fontWeight: 600, fontSize: 'var(--text-sm)' }}>
                             Crédits d&apos;impôt
                         </h3>
 
@@ -89,7 +93,7 @@ export default function CreditsImpotPage() {
                             </select>
                         </div>
 
-                        <h3 style={{ fontWeight: 600, fontSize: 'var(--text-sm)', marginTop: 'var(--space-4)', marginBottom: 'var(--space-3)', color: 'var(--color-accent)' }}>
+                        <h3 className="text-accent mt-4 mb-3" style={{ fontWeight: 600, fontSize: 'var(--text-sm)' }}>
                             Réductions d&apos;impôt
                         </h3>
 

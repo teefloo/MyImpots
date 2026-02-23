@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { profiles, documentCategories, getDocumentsForProfile } from '@/data/documents-checklist';
+import { FileIcon } from '@/components/SVGIcons';
 
 export default function DocumentsPage() {
     const [selectedProfile, setSelectedProfile] = useState('tous');
@@ -23,7 +24,10 @@ export default function DocumentsPage() {
     return (
         <>
             <div className="page-header">
-                <h1 className="page-title">📋 Documents nécessaires</h1>
+                <h1 className="page-title flex-center gap-3">
+                    <FileIcon size={32} className="text-primary" />
+                    Documents nécessaires
+                </h1>
                 <p className="page-description">
                     Sélectionnez votre profil et cochez les documents au fur et à mesure
                 </p>
@@ -65,7 +69,7 @@ export default function DocumentsPage() {
                 {/* Document lists */}
                 {filteredCategories.map((cat) => (
                     <div key={cat.id} className="card mb-6">
-                        <h3 style={{ fontWeight: 600, marginBottom: 'var(--space-4)', display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+                        <h3 className="flex-align-center gap-2 mb-4" style={{ fontWeight: 600 }}>
                             {cat.icon} {cat.label}
                         </h3>
                         {cat.documents.map((doc) => (

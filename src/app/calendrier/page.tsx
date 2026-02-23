@@ -16,8 +16,8 @@ export default function CalendrierPage() {
     return (
         <>
             <div className="page-header">
-                <h1 className="page-title" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--space-3)' }}>
-                    <CalendarIcon size={32} style={{ color: 'var(--color-primary)' }} />
+                <h1 className="page-title flex-center gap-3">
+                    <CalendarIcon size={32} className="text-primary" />
                     Calendrier fiscal 2026
                 </h1>
                 <p className="page-description">
@@ -28,8 +28,8 @@ export default function CalendrierPage() {
             <div className="container" style={{ paddingBottom: 'var(--space-16)', maxWidth: 800 }}>
                 {/* Department selector */}
                 <div className="card mb-8">
-                    <h3 style={{ fontWeight: 600, marginBottom: 'var(--space-3)', display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
-                        <HomeIcon size={20} style={{ color: 'var(--color-primary)' }} />
+                    <h3 className="flex-align-center gap-2 mb-3" style={{ fontWeight: 600 }}>
+                        <HomeIcon size={20} className="text-primary" />
                         Votre date limite personnelle
                     </h3>
                     <div className="form-group" style={{ marginBottom: 0 }}>

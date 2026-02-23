@@ -22,8 +22,8 @@ export default function FaqPage() {
     return (
         <>
             <div className="page-header">
-                <h1 className="page-title" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--space-3)' }}>
-                    <HelpCircleIcon size={32} style={{ color: 'var(--color-primary)' }} />
+                <h1 className="page-title flex-center gap-3">
+                    <HelpCircleIcon size={32} className="text-primary" />
                     Foire aux questions
                 </h1>
                 <p className="page-description">
@@ -79,8 +79,8 @@ export default function FaqPage() {
 
                 {filtered.length === 0 && (
                     <div className="text-center" style={{ padding: 'var(--space-12) 0', color: 'var(--color-text-secondary)' }}>
-                        <div style={{ marginBottom: 'var(--space-4)', display: 'flex', justifyContent: 'center' }}>
-                            <SearchIcon size={48} style={{ color: 'var(--color-primary)', opacity: 0.5 }} />
+                        <div className="flex-center mb-4">
+                            <SearchIcon size={48} className="text-primary" style={{ opacity: 0.5 }} />
                         </div>
                         <p>Aucune question ne correspond à votre recherche</p>
                     </div>

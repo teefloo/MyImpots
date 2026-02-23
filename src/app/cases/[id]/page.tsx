@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { taxBoxes, getTaxBoxById } from '@/data/tax-boxes';
 import { categories } from '@/data/categories';
 import { forms } from '@/data/forms';
+import { SearchIcon } from '@/components/SVGIcons';
 
 export default function BoxDetailPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
@@ -13,8 +14,10 @@ export default function BoxDetailPage({ params }: { params: Promise<{ id: string
     if (!box) {
         return (
             <div className="container text-center" style={{ padding: 'var(--space-16) 0' }}>
-                <p style={{ fontSize: 'var(--text-3xl)', marginBottom: 'var(--space-4)' }}>🔍</p>
-                <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: 700, marginBottom: 'var(--space-2)' }}>Case non trouvée</h1>
+                <div className="flex-center mb-4">
+                    <SearchIcon size={48} className="text-primary" style={{ opacity: 0.5 }} />
+                </div>
+                <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: 700 }} className="mb-2">Case non trouvée</h1>
                 <p style={{ color: 'var(--color-text-secondary)' }}>La case demandée n&apos;existe pas dans notre base.</p>
                 <Link href="/cases" className="btn btn-primary mt-6">Retour aux cases fiscales</Link>
             </div>
@@ -39,7 +42,7 @@ export default function BoxDetailPage({ params }: { params: Promise<{ id: string
                         <div className="detail-number">{box.number}</div>
                         <div>
                             <h1 className="detail-title">{box.label}</h1>
-                            <div style={{ display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
+                            <div className="flex-align-center gap-2" style={{ flexWrap: 'wrap' }}>
                                 <span className="badge badge-primary">{box.formId}</span>
                                 {category && <span className="badge badge-accent">{category.icon} {category.label}</span>}
                             </div>
@@ -119,9 +122,9 @@ export default function BoxDetailPage({ params }: { params: Promise<{ id: string
                             </a>
                         </div>
                     )}
-                    <div style={{ marginTop: 'var(--space-6)' }}>
-                        <h4 style={{ fontWeight: 600, marginBottom: 'var(--space-2)', fontSize: 'var(--text-sm)' }}>Mots-clés</h4>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-1)' }}>
+                    <div className="mt-4">
+                        <h4 style={{ fontWeight: 600, fontSize: 'var(--text-sm)' }} className="mb-2">Mots-clés</h4>
+                        <div className="flex-align-center gap-1" style={{ flexWrap: 'wrap' }}>
                             {box.keywords.map((kw) => (
                                 <span key={kw} className="badge badge-primary">{kw}</span>
                             ))}

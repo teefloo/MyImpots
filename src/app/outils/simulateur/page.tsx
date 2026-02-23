@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import { calculateTax, taxBrackets } from '@/data/tax-rates';
+import { CalculatorIcon } from '@/components/SVGIcons';
 
-const BRACKET_COLORS = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6'];
+const BRACKET_COLORS = ['var(--color-success)', 'var(--color-info)', 'var(--color-warning)', 'var(--color-error)', 'var(--color-primary)'];
 
 export default function SimulateurPage() {
     const [revenu, setRevenu] = useState('');
@@ -22,7 +23,10 @@ export default function SimulateurPage() {
     return (
         <>
             <div className="page-header">
-                <h1 className="page-title">📊 Simulateur d&apos;impôt sur le revenu</h1>
+                <h1 className="page-title flex-center gap-3">
+                    <CalculatorIcon size={32} className="text-primary" />
+                    Simulateur d&apos;impôt sur le revenu
+                </h1>
                 <p className="page-description">
                     Barème 2026 applicable aux revenus 2025 — Calculez votre impôt, taux marginal et taux moyen
                 </p>

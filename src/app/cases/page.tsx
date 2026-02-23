@@ -85,8 +85,8 @@ function CasesContent() {
 
                 {displayedBoxes.length === 0 && (
                     <div className="text-center" style={{ padding: 'var(--space-16) 0', color: 'var(--color-text-secondary)' }}>
-                        <div style={{ marginBottom: 'var(--space-4)', display: 'flex', justifyContent: 'center' }}>
-                            <SearchIcon size={48} style={{ color: 'var(--color-primary)', opacity: 0.5 }} />
+                        <div className="flex-center mb-4">
+                            <SearchIcon size={48} className="text-primary" style={{ opacity: 0.5 }} />
                         </div>
                         <p style={{ fontSize: 'var(--text-lg)', fontWeight: 600 }}>Aucune case trouvée</p>
                         <p style={{ fontSize: 'var(--text-sm)' }}>Essayez un autre terme de recherche ou modifiez les filtres</p>

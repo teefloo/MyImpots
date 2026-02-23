@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { microRegimes } from '@/data/tax-rates';
+import { BuildingIcon } from '@/components/SVGIcons';
 
 export default function MicroVsReelPage() {
     const [ca, setCa] = useState('');
@@ -28,7 +29,10 @@ export default function MicroVsReelPage() {
     return (
         <>
             <div className="page-header">
-                <h1 className="page-title">🏢 Micro-BIC/BNC vs régime réel</h1>
+                <h1 className="page-title flex-center gap-3">
+                    <BuildingIcon size={32} className="text-primary" />
+                    Micro-BIC/BNC vs régime réel
+                </h1>
                 <p className="page-description">
                     Comparez le régime micro (abattement forfaitaire) avec le régime réel (déduction des charges)
                 </p>

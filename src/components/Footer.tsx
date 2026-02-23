@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { FileTextIcon } from './SVGIcons';
 
 export default function Footer() {
     return (
@@ -6,8 +7,8 @@ export default function Footer() {
             <div className="container">
                 <div className="footer-grid">
                     <div className="footer-brand">
-                        <div className="footer-brand-title">
-                            <span>🧾</span> MyImpots
+                        <div className="footer-brand-title flex-align-center gap-2">
+                            <span className="text-primary flex-center"><FileTextIcon size={24} /></span> MyImpots
                         </div>
                         <p>
                             Trouvez facilement le numéro d&apos;une case fiscale et comprenez précisément

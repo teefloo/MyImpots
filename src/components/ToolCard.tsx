@@ -10,20 +10,32 @@ interface ToolCardProps {
     showButton?: boolean;
 }
 
-export default function ToolCard({ href, icon, title, description, color, showButton = true }: ToolCardProps) {
+export default function ToolCard({ href, icon, title, description, color = 'primary', showButton = true }: ToolCardProps) {
     return (
         <Link href={href} className="card-link">
             <div className="card" style={{
-                borderLeft: color ? `4px solid ${color}` : undefined,
-                '--card-color': color || 'var(--color-primary)',
-                '--card-glow': color ? `${color}66` : 'rgba(242, 132, 130, 0.4)'
+                borderLeft: `4px solid var(--color-${color})`,
+                '--card-color': `var(--color-${color})`,
+                '--card-glow': `var(--color-${color}-light)`
             } as React.CSSProperties}>
-                <div className="card-icon" style={color ? { backgroundColor: `${color}1A`, color: color } : undefined}>
+                <div className="card-icon" style={{ backgroundColor: `var(--color-${color}-light)`, color: `var(--color-${color})` }}>
                     {icon}
                 </div>
                 <h3 className="card-title">{title}</h3>
                 <p className="card-description">{description}</p>
-                {showButton && <span className="btn btn-primary mt-4">Ouvrir l&apos;outil →</span>}
+                {showButton && (
+                    <span
+                        className="btn mt-4"
+                        style={{
+                            backgroundColor: `var(--color-${color})`,
+                            borderColor: `var(--color-${color})`,
+                            color: '#ffffff',
+                            boxShadow: `0 4px 12px var(--color-${color}-light)`
+                        }}
+                    >
+                        Ouvrir l&apos;outil →
+                    </span>
+                )}
             </div>
         </Link>
     );
