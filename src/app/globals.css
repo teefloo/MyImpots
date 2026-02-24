@@ -437,17 +437,30 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-primary);
-  filter: drop-shadow(0 4px 6px rgba(242, 132, 130, 0.3));
+  width: 42px;
+  height: 42px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(242, 132, 130, 0.2), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.header-logo-icon svg {
-  width: 28px;
-  height: 28px;
+.header-logo-icon svg,
+.header-logo-icon img {
+  width: 140%;
+  height: 140%;
+  object-fit: cover;
   transition: transform var(--transition-fast);
 }
 
-.header-logo:hover .header-logo-icon svg {
+.header-logo:hover .header-logo-icon {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(242, 132, 130, 0.3), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.header-logo:hover .header-logo-icon img {
   transform: scale(1.05);
 }
 

@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 import SearchBar from './SearchBar';
-import { EuroIcon } from './SVGIcons';
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -36,7 +36,7 @@ export default function Header() {
             }}>
                 <Link href="/" className="header-logo">
                     <span className="header-logo-icon">
-                        <EuroIcon size={28} />
+                        <Image src="/logo.png" alt="MyImpots Logo" width={64} height={64} priority />
                     </span>
                     <span>MyImpots</span>
                 </Link>
