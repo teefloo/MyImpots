@@ -1,17 +1,38 @@
 'use client';
 
 import { useState } from 'react';
-import { calculateTax, taxBrackets } from '@/data/tax-rates';
+import { calculateTax, taxBrackets, ABATTEMENT_10_POURCENT_MIN, ABATTEMENT_10_POURCENT_MAX } from '@/data/tax-rates';
 import { CalculatorIcon } from '@/components/SVGIcons';
 
 const BRACKET_COLORS = ['var(--color-success)', 'var(--color-info)', 'var(--color-warning)', 'var(--color-error)', 'var(--color-primary)'];
 
 export default function SimulateurPage() {
-    const [revenu, setRevenu] = useState('');
+    const [inputType, setInputType] = useState<'revenu' | 'salaire'>('revenu');
+    const [inputValue, setInputValue] = useState('');
     const [parts, setParts] = useState('1');
 
-    const revenuNum = parseFloat(revenu) || 0;
+    const amountNum = parseFloat(inputValue) || 0;
     const partsNum = parseFloat(parts) || 1;
+
+    let revenuNum = amountNum;
+    let abattement = 0;
+
+    if (inputType === 'salaire') {
+        // Calculate the 10% deduction
+        const calculatedAbattement = amountNum * 0.1;
+
+        // Import these dynamically or import at the top
+        // But since we need them, let's use the constant values or import them later
+        // Just hardcoding for clarity here, or assuming they are from tax-rates
+        const MIN_ABATTEMENT = 495;
+        const MAX_ABATTEMENT = 14171;
+
+        abattement = Math.min(Math.max(calculatedAbattement, MIN_ABATTEMENT), MAX_ABATTEMENT);
+
+        // Apply deduction to get the taxable income
+        revenuNum = Math.max(0, amountNum - abattement);
+    }
+
     const result = calculateTax(revenuNum, partsNum);
 
     const formatMoney = (n: number) =>
@@ -38,18 +59,50 @@ export default function SimulateurPage() {
                     <div className="calculator-input">
                         <h2 style={{ fontWeight: 600, marginBottom: 'var(--space-6)' }}>Vos informations</h2>
 
+                        <div className="form-group" style={{ marginBottom: 'var(--space-6)' }}>
+                            <label className="form-label">Type de revenu que vous connaissez :</label>
+                            <div style={{ display: 'flex', gap: 'var(--space-4)', marginTop: 'var(--space-2)' }}>
+                                <label style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', cursor: 'pointer' }}>
+                                    <input
+                                        type="radio"
+                                        name="inputType"
+                                        value="revenu"
+                                        checked={inputType === 'revenu'}
+                                        onChange={() => setInputType('revenu')}
+                                        style={{ accentColor: 'var(--color-primary)' }}
+                                    />
+                                    <span>Revenu net imposable</span>
+                                </label>
+                                <label style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', cursor: 'pointer' }}>
+                                    <input
+                                        type="radio"
+                                        name="inputType"
+                                        value="salaire"
+                                        checked={inputType === 'salaire'}
+                                        onChange={() => setInputType('salaire')}
+                                        style={{ accentColor: 'var(--color-primary)' }}
+                                    />
+                                    <span>Salaire net</span>
+                                </label>
+                            </div>
+                        </div>
+
                         <div className="form-group">
-                            <label className="form-label">Revenu net imposable annuel (€)</label>
+                            <label className="form-label">
+                                {inputType === 'revenu' ? 'Revenu net imposable annuel (€)' : 'Salaire net annuel (€)'}
+                            </label>
                             <input
                                 type="number"
                                 className="form-input"
                                 placeholder="Ex : 35000"
-                                value={revenu}
-                                onChange={(e) => setRevenu(e.target.value)}
+                                value={inputValue}
+                                onChange={(e) => setInputValue(e.target.value)}
                                 min="0"
                             />
                             <p className="form-hint">
-                                Montant après abattement de 10 % ou frais réels. Figurant sur votre avis d&apos;imposition.
+                                {inputType === 'revenu'
+                                    ? "Montant après abattement de 10 % ou frais réels. Figurant sur votre avis d'imposition."
+                                    : "Salaire net perçu avant imposition. L&apos;abattement forfaitaire de 10 % sera appliqué automatiquement."}
                             </p>
                         </div>
 
@@ -97,15 +150,27 @@ export default function SimulateurPage() {
                             )}
                         </div>
 
+                        {inputType === 'salaire' && amountNum > 0 && (
+                            <div className="result-row" style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--text-sm)' }}>
+                                <span className="result-row-label">Salaire déclaré</span>
+                                <span className="result-row-value">{formatMoney(amountNum)}</span>
+                            </div>
+                        )}
+                        {inputType === 'salaire' && amountNum > 0 && (
+                            <div className="result-row" style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--text-sm)' }}>
+                                <span className="result-row-label">Abattement de 10 % déduit</span>
+                                <span className="result-row-value">-{formatMoney(abattement)}</span>
+                            </div>
+                        )}
                         <div className="result-row">
                             <span className="result-row-label">Revenu imposable</span>
-                            <span className="result-row-value">{formatMoney(revenuNum)}</span>
+                            <span className="result-row-value" style={{ fontWeight: inputType === 'salaire' ? 600 : 400 }}>{formatMoney(revenuNum)}</span>
                         </div>
                         <div className="result-row">
                             <span className="result-row-label">Quotient familial</span>
                             <span className="result-row-value">{formatMoney(revenuNum / partsNum)} / part</span>
                         </div>
-                        <div className="result-row">
+                        <div className="result-row mt-4">
                             <span className="result-row-label">Impôt brut</span>
                             <span className="result-row-value">{formatMoney(result.impotBrut)}</span>
                         </div>
@@ -115,7 +180,7 @@ export default function SimulateurPage() {
                                 <span className="result-row-value" style={{ color: 'var(--color-success)' }}>-{formatMoney(result.decote)}</span>
                             </div>
                         )}
-                        <div className="result-row">
+                        <div className="result-row mt-4" style={{ borderTop: '1px solid var(--color-border)', paddingTop: 'var(--space-2)' }}>
                             <span className="result-row-label">Taux marginal d&apos;imposition</span>
                             <span className="result-row-value">{formatPercent(result.tauxMarginal)}</span>
                         </div>
@@ -123,9 +188,9 @@ export default function SimulateurPage() {
                             <span className="result-row-label">Taux moyen d&apos;imposition</span>
                             <span className="result-row-value">{formatPercent(result.tauxMoyen)}</span>
                         </div>
-                        <div className="result-row">
+                        <div className="result-row mt-4">
                             <span className="result-row-label">Revenu mensuel net d&apos;impôt</span>
-                            <span className="result-row-value">{formatMoney((revenuNum - result.impotNet) / 12)}/mois</span>
+                            <span className="result-row-value">{formatMoney((amountNum - result.impotNet) / 12)}/mois</span>
                         </div>
 
                         {/* Bracket visualization */}

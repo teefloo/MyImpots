@@ -1,0 +1,4 @@
+s:1 - @typescript-eslint/no-require-imports
+src\app\cases\page.tsx:37 - react-hooks/set-state-in-effect
+src\components\Header.tsx:17 - react-hooks/set-state-in-effect
+src\components\SearchBar.tsx:22 - react-hooks/set-state-in-effect

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { PLAFOND_AVANTAGES_FISCAUX } from '@/data/tax-rates';
+import { PLAFOND_AVANTAGES_FISCAUX, ABATTEMENT_10_POURCENT_MIN, ABATTEMENT_10_POURCENT_MAX } from '@/data/tax-rates';
 import { CoinsIcon } from '@/components/SVGIcons';
 
 export default function CreditsImpotPage() {
@@ -10,7 +10,11 @@ export default function CreditsImpotPage() {
     const [nbEnfantsGarde, setNbEnfantsGarde] = useState('1');
     const [donsColuche, setDonsColuche] = useState('');
     const [donsInteret, setDonsInteret] = useState('');
-    const [revenuImposable, setRevenuImposable] = useState('');
+
+    // Toggle for income type
+    const [inputType, setInputType] = useState<'revenu' | 'salaire'>('revenu');
+    const [inputValue, setInputValue] = useState('');
+
     const [pme, setPme] = useState('');
 
     const emploiNum = parseFloat(emploiDomicile) || 0;
@@ -18,8 +22,20 @@ export default function CreditsImpotPage() {
     const nbEnfants = parseInt(nbEnfantsGarde) || 1;
     const colucheNum = parseFloat(donsColuche) || 0;
     const interetNum = parseFloat(donsInteret) || 0;
-    const revenuNum = parseFloat(revenuImposable) || 0;
+    const amountNum = parseFloat(inputValue) || 0;
     const pmeNum = parseFloat(pme) || 0;
+
+    let revenuNum = amountNum;
+    let abattement = 0;
+
+    if (inputType === 'salaire') {
+        const calculatedAbattement = amountNum * 0.1;
+        // The bounds are ideally imported from tax-rates, let's just use the values for now, but we'll import them later to be cleaner
+        const MIN_ABATTEMENT = 495;
+        const MAX_ABATTEMENT = 14171;
+        abattement = Math.min(Math.max(calculatedAbattement, MIN_ABATTEMENT), MAX_ABATTEMENT);
+        revenuNum = Math.max(0, amountNum - abattement);
+    }
 
     // Emploi à domicile: 50%, max 12 000 €
     const emploiCredit = Math.min(emploiNum, 12000) * 0.5;
@@ -65,10 +81,56 @@ export default function CreditsImpotPage() {
                     <div className="calculator-input">
                         <h2 style={{ fontWeight: 600, marginBottom: 'var(--space-4)' }}>Vos dépenses</h2>
 
-                        <div className="form-group">
-                            <label className="form-label">Revenu net imposable (€) — pour le plafond des dons</label>
-                            <input type="number" className="form-input" placeholder="Ex : 40000" value={revenuImposable} onChange={(e) => setRevenuImposable(e.target.value)} min="0" />
+                        <div className="form-group" style={{ marginBottom: 'var(--space-4)' }}>
+                            <label className="form-label" style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Type de revenu connu :</label>
+                            <div style={{ display: 'flex', gap: 'var(--space-4)' }}>
+                                <label style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', cursor: 'pointer' }}>
+                                    <input
+                                        type="radio"
+                                        name="inputTypeCredit"
+                                        value="revenu"
+                                        checked={inputType === 'revenu'}
+                                        onChange={() => setInputType('revenu')}
+                                        style={{ accentColor: 'var(--color-primary)' }}
+                                    />
+                                    <span>Revenu net imposable</span>
+                                </label>
+                                <label style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', cursor: 'pointer' }}>
+                                    <input
+                                        type="radio"
+                                        name="inputTypeCredit"
+                                        value="salaire"
+                                        checked={inputType === 'salaire'}
+                                        onChange={() => setInputType('salaire')}
+                                        style={{ accentColor: 'var(--color-primary)' }}
+                                    />
+                                    <span>Salaire net</span>
+                                </label>
+                            </div>
                         </div>
+
+                        <div className="form-group">
+                            <label className="form-label">
+                                {inputType === 'revenu' ? 'Revenu net imposable annuel (€)' : 'Salaire net annuel (€)'}
+                            </label>
+                            <input
+                                type="number"
+                                className="form-input"
+                                placeholder="Ex : 40000"
+                                value={inputValue}
+                                onChange={(e) => setInputValue(e.target.value)}
+                                min="0"
+                            />
+                            <p className="form-hint">
+                                Utilisé pour calculer le plafond des dons (20 % du revenu imposable).
+                            </p>
+                        </div>
+
+                        {inputType === 'salaire' && amountNum > 0 && (
+                            <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-4)' }}>
+                                Revenu imposable calculé (après abattement 10%) : <span style={{ fontWeight: 600 }}>{formatMoney(revenuNum)}</span>
+                            </div>
+                        )}
 
                         <h3 className="text-primary mt-4 mb-3" style={{ fontWeight: 600, fontSize: 'var(--text-sm)' }}>
                             Crédits d&apos;impôt

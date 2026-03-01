@@ -93,7 +93,7 @@ export default function SearchBar({ isHero = false }: SearchBarProps) {
             {isOpen && query.trim().length > 1 && results.length === 0 && (
                 <div id="search-dropdown" className="search-results-dropdown">
                     <div className="search-result-item flex-center text-secondary">
-                        Aucune case trouvée pour "{query}"
+                        Aucune case trouvée pour &quot;{query}&quot;
                     </div>
                 </div>
             )}
