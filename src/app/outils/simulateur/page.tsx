@@ -61,7 +61,7 @@ export default function SimulateurPage() {
 
                         <div className="form-group" style={{ marginBottom: 'var(--space-6)' }}>
                             <label className="form-label">Type de revenu que vous connaissez :</label>
-                            <div style={{ display: 'flex', gap: 'var(--space-4)', marginTop: 'var(--space-2)' }}>
+                            <div style={{ display: 'flex', gap: 'var(--space-4)', marginTop: 'var(--space-2)', flexWrap: 'wrap' }}>
                                 <label style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', cursor: 'pointer' }}>
                                     <input
                                         type="radio"

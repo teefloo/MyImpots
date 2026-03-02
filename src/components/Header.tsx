@@ -27,6 +27,17 @@ export default function Header() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [pathname]);
 
+    useEffect(() => {
+        if (menuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [menuOpen]);
+
     return (
         <header className="header flex-center">
             <div className="header-inner" style={{
@@ -49,11 +60,9 @@ export default function Header() {
                     overflow: 'hidden',
                     pointerEvents: showSearch ? 'auto' : 'none',
                     transform: showSearch ? 'translateY(0)' : 'translateY(-10px)',
-                    transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                    display: 'flex',
-                    alignItems: 'center'
+                    transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)'
                 }}>
-                    <div style={{ width: '100%', minWidth: 'min(400px, 40vw)', flexShrink: 0 }}>
+                    <div style={{ width: '100%', flexShrink: 0 }}>
                         <SearchBar />
                     </div>
                 </div>
