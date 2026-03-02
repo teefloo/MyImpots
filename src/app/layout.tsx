@@ -38,16 +38,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr">
       <body>
-        <div className="bg-blobs-container">
-          {/* Animated Liquid Blobs */}
-          <div className="bg-blob blob-1" />
-          <div className="bg-blob blob-2" />
-          <div className="bg-blob blob-3" />
-        </div>
+        <div style={{ overflowX: 'clip', position: 'relative', width: '100%' }}>
+          <div className="bg-blobs-container">
+            {/* Animated Liquid Blobs */}
+            <div className="bg-blob blob-1" />
+            <div className="bg-blob blob-2" />
+            <div className="bg-blob blob-3" />
+          </div>
 
-        <Header />
-        <main className="main-content">{children}</main>
-        <Footer />
+          <Header />
+          <main className="main-content">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
