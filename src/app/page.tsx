@@ -71,7 +71,7 @@ export default function HomePage() {
 
 
           <div className="hero-search">
-            <SearchBar isHero={true} />
+            <SearchBar variant="hero" />
           </div>
 
           <div className="hero-stats">

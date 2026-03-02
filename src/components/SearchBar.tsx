@@ -7,10 +7,10 @@ import { searchTaxBoxes, TaxBox } from '@/data/tax-boxes';
 import { SearchIcon } from './SVGIcons';
 
 interface SearchBarProps {
-    isHero?: boolean;
+    variant?: 'hero' | 'page' | 'header';
 }
 
-export default function SearchBar({ isHero = false }: SearchBarProps) {
+export default function SearchBar({ variant = 'page' }: SearchBarProps) {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState<TaxBox[]>([]);
     const [isOpen, setIsOpen] = useState(false);
@@ -46,15 +46,21 @@ export default function SearchBar({ isHero = false }: SearchBarProps) {
 
     return (
         <div className="search-container" ref={wrapperRef}>
-            <span className="search-icon"><SearchIcon size={20} /></span>
             <input
                 type="text"
-                className={isHero ? 'search-input' : 'search-input-page'}
+                className={variant === 'hero' ? 'search-input' : `search-input-${variant}`}
                 placeholder="Ex. 1AJ, frais réels, dons..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onFocus={() => {
                     if (query.trim().length > 1) setIsOpen(true);
+                }}
+                onClick={(e) => {
+                    // On mobile header, the input acts as a button leading to cases page
+                    if (variant === 'header' && window.innerWidth <= 900) {
+                        e.preventDefault();
+                        router.push('/cases');
+                    }
                 }}
                 onKeyDown={handleKeyDown}
                 role="combobox"
@@ -62,6 +68,7 @@ export default function SearchBar({ isHero = false }: SearchBarProps) {
                 aria-controls="search-dropdown"
                 aria-autocomplete="list"
             />
+            <span className="search-icon"><SearchIcon size={20} /></span>
             {isOpen && results.length > 0 && (
                 <div id="search-dropdown" className="search-results-dropdown" role="listbox">
                     {results.map((box) => (
