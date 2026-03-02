@@ -51,7 +51,16 @@ export default function Header() {
                 </Link>
 
                 <div className="header-actions">
-                    <Link href="/cases" className="header-search-btn" aria-label="Rechercher une case">
+                    <Link
+                        href="/cases"
+                        className="header-search-btn"
+                        aria-label="Rechercher une case"
+                        style={{
+                            opacity: showSearch ? 1 : 0,
+                            pointerEvents: showSearch ? 'auto' : 'none',
+                            transform: showSearch ? 'translateY(0) scale(1)' : 'translateY(-10px) scale(0.95)',
+                        }}
+                    >
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
