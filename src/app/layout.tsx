@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { Agentation } from 'agentation';
 
 export const metadata: Metadata = {
   title: {
@@ -50,6 +51,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="main-content">{children}</main>
           <Footer />
         </div>
+        {process.env.NODE_ENV === 'development' && !process.env.VERCEL && (
+          <Agentation endpoint="http://localhost:4747" />
+        )}
       </body>
     </html>
   );
