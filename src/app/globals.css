@@ -409,7 +409,8 @@ img {
 @media (max-width: 768px) {
   .header {
     margin: 0 var(--space-4);
-    top: var(--space-2);
+    top: 10px;
+    /* Always keep slightly from top rather than space-2 which might trigger scroll bugs */
   }
 }
 
@@ -562,9 +563,10 @@ img {
     top: calc(100% + var(--space-2));
     left: 0;
     right: 0;
-    background: var(--color-bg-card);
-    backdrop-filter: blur(24px) saturate(1.4);
-    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    /* Use a strong semi-transparent color for mobile menu to ensure readability */
+    background: rgba(253, 250, 246, 0.95);
+    backdrop-filter: blur(24px) saturate(1.8);
+    -webkit-backdrop-filter: blur(24px) saturate(1.8);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
     flex-direction: column;
@@ -572,6 +574,12 @@ img {
     box-shadow: var(--shadow-xl), var(--glass-highlight);
     max-height: calc(100vh - var(--header-height) - var(--space-8));
     overflow-y: auto;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .header-nav {
+      background: rgba(20, 19, 18, 0.95);
+    }
   }
 
   .header-nav.open {
@@ -584,6 +592,7 @@ img {
     min-height: 48px;
     display: flex;
     align-items: center;
+    border-radius: var(--radius-md);
   }
 
   .mobile-menu-btn {
