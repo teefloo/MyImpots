@@ -5,8 +5,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 
-import SearchBar from './SearchBar';
-
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [showSearch, setShowSearch] = useState(true);
@@ -52,38 +50,28 @@ export default function Header() {
                     <span>MyImpots</span>
                 </Link>
 
-                <div className="header-search-wrapper" style={{
-                    width: showSearch ? '100%' : '0px',
-                    maxWidth: showSearch ? '400px' : '0px',
-                    margin: showSearch ? '0 var(--space-4)' : '0',
-                    opacity: showSearch ? 1 : 0,
-                    overflow: 'hidden',
-                    pointerEvents: showSearch ? 'auto' : 'none',
-                    transform: showSearch ? 'translateY(0)' : 'translateY(-10px)',
-                    transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)'
-                }}>
-                    <div style={{ width: '100%', flexShrink: 0 }}>
-                        <SearchBar />
-                    </div>
+                <div className="header-actions">
+                    <Link href="/cases" className="header-search-btn" aria-label="Rechercher une case">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </Link>
+
+                    <button
+                        className="mobile-menu-btn"
+                        onClick={() => setMenuOpen(!menuOpen)}
+                        aria-label="Menu de navigation"
+                    >
+                        {menuOpen ? '✕' : '☰'}
+                    </button>
                 </div>
 
-                <button
-                    className="mobile-menu-btn"
-                    onClick={() => setMenuOpen(!menuOpen)}
-                    aria-label="Menu de navigation"
-                >
-                    {menuOpen ? '✕' : '☰'}
-                </button>
+                {menuOpen && (
+                    <div className="mobile-menu-overlay" onClick={() => setMenuOpen(false)}></div>
+                )}
 
-                <nav className={`header-nav ${menuOpen ? 'open' : ''}`} style={menuOpen ? {
-                    background: 'var(--color-bg-card)',
-                    backdropFilter: 'blur(24px) saturate(1.4)',
-                    WebkitBackdropFilter: 'blur(24px) saturate(1.4)',
-                    border: '1px solid var(--color-border)',
-                    borderRadius: 'var(--radius-xl)',
-                    marginTop: 'var(--space-2)',
-                    boxShadow: 'var(--shadow-xl), var(--glass-highlight)'
-                } : {}}>
+                <nav className={`header-nav ${menuOpen ? 'open' : ''}`}>
                     <Link href="/cases" onClick={() => setMenuOpen(false)}>
                         Cases fiscales
                     </Link>
