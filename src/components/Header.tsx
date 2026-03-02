@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
@@ -9,6 +9,7 @@ export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [showSearch, setShowSearch] = useState(true);
     const pathname = usePathname();
+    const headerRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
         if (pathname !== '/') {
@@ -25,12 +26,25 @@ export default function Header() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [pathname]);
 
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+                setMenuOpen(false);
+            }
+        };
+
+        if (menuOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [menuOpen]);
+
     return (
         <>
-            {menuOpen && (
-                <div className="mobile-menu-overlay" onClick={() => setMenuOpen(false)}></div>
-            )}
-            <header className="header flex-center">
+            <header className="header flex-center" ref={headerRef}>
                 <div className="header-inner" style={{
                     transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
                     width: (showSearch || menuOpen) ? '100%' : 'fit-content',
