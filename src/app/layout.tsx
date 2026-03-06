@@ -5,6 +5,11 @@ import Footer from '@/components/Footer';
 import { Agentation } from 'agentation';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL
+    || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : null)
+    || 'https://myimpots.fr'
+  ),
   title: {
     default: 'MyImpots — Guide des cases fiscales et outils pour votre déclaration de revenus 2025',
     template: '%s | MyImpots',
