@@ -25,9 +25,25 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'MyImpots — Guide complet de la déclaration de revenus 2025',
-    description: 'Trouvez les cases fiscales, simulez votre impôt, comparez les régimes fiscaux.',
+    description: 'Trouvez les cases fiscales, simulez votre impôt, comparez les régimes fiscaux. Tous les outils pour simplifier votre déclaration.',
     type: 'website',
     locale: 'fr_FR',
+    siteName: 'MyImpots',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'MyImpots — Votre déclaration de revenus, simplifiée',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MyImpots — Votre déclaration de revenus, simplifiée',
+    description: 'Trouvez les cases fiscales, simulez votre impôt, comparez les régimes. Outils gratuits pour votre déclaration 2025.',
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,

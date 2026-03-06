@@ -6,6 +6,17 @@ import ToolCard from '@/components/ToolCard';
 export const metadata: Metadata = {
     title: 'Outils fiscaux',
     description: 'Calculateurs et comparateurs pour optimiser votre déclaration de revenus 2025.',
+    openGraph: {
+        title: 'Outils Fiscaux | MyImpots',
+        description: 'Simulateur d\'impôt, comparateurs frais réels vs 10%, micro vs réel, crédits d\'impôt. Tous les outils pour optimiser votre déclaration.',
+        images: [{ url: '/og-outils.png', width: 1200, height: 630, alt: 'MyImpots — Outils pour votre déclaration' }],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Outils Fiscaux | MyImpots',
+        description: 'Simulateurs et comparateurs gratuits pour votre déclaration de revenus 2025.',
+        images: ['/og-outils.png'],
+    },
 };
 
 export default function OutilsPage() {
