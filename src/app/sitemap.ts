@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { taxBoxes } from '@/data/tax-boxes';
 
-const BASE_URL = 'https://myimpots.fr';
+const BASE_URL = 'https://myimpots.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const now = new Date();

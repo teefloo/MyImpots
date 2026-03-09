@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL
     || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : null)
-    || 'https://myimpots.fr'
+    || 'https://myimpots.com'
   ),
   title: {
     default: 'MyImpots — Guide des cases fiscales et outils pour votre déclaration de revenus 2025',
@@ -63,11 +63,11 @@ const jsonLdWebSite = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'MyImpots',
-  url: 'https://myimpots.fr',
+  url: 'https://myimpots.com',
   description: 'Guide des cases fiscales et outils pour votre déclaration de revenus 2025.',
   potentialAction: {
     '@type': 'SearchAction',
-    target: 'https://myimpots.fr/cases?q={search_term_string}',
+    target: 'https://myimpots.com/cases?q={search_term_string}',
     'query-input': 'required name=search_term_string',
   },
 };

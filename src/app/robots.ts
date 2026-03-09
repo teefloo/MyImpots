@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
             userAgent: '*',
             allow: '/',
         },
-        sitemap: 'https://myimpots.fr/sitemap.xml',
+        sitemap: 'https://myimpots.com/sitemap.xml',
     };
 }
