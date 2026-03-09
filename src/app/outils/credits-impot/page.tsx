@@ -15,6 +15,9 @@ export const metadata: Metadata = {
         description: 'Estimez vos avantages fiscaux et vérifiez le plafonnement des niches fiscales.',
         images: ['/og-outils.png'],
     },
+    alternates: {
+        canonical: '/outils/credits-impot',
+    },
 };
 
 export default function CreditsImpotPage() {

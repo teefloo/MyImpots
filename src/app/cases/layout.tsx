@@ -1,25 +1,21 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Cases Fiscales — Guide complet des cases de la déclaration',
-    description: 'Trouvez le numéro de votre case fiscale, comprenez à quoi elle correspond et comment la remplir. Guide complet du formulaire 2042.',
+    title: 'Cases fiscales 2025',
+    description: 'Recherchez par numéro de case ou par mot-clé, filtrez par catégorie ou formulaire pour votre déclaration de revenus.',
     openGraph: {
-        title: 'Guide des Cases Fiscales | MyImpots',
-        description: 'Recherchez et comprenez chaque case de votre déclaration de revenus.',
-        images: [
-            {
-                url: '/og-cases.png',
-                width: 1200,
-                height: 630,
-                alt: 'MyImpots — Guide des cases fiscales : 1AJ, 2BH, 7UF...',
-            },
-        ],
+        title: 'Cases fiscales 2025 | MyImpots',
+        description: 'Trouvez facilement la définition d\'une case fiscale pour votre déclaration de revenus. Explications claires et conseils.',
+        images: [{ url: '/og-cases.png', width: 1200, height: 630, alt: 'MyImpots — Dictionnaire des cases fiscales' }],
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Guide des Cases Fiscales | MyImpots',
-        description: 'Trouvez et comprenez chaque case de votre déclaration de revenus.',
+        title: 'Cases fiscales 2025 | MyImpots',
+        description: 'Recherchez par numéro de case ou par mot-clé pour réussir votre déclaration.',
         images: ['/og-cases.png'],
+    },
+    alternates: {
+        canonical: '/cases',
     },
 };
 

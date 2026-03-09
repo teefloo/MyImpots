@@ -15,6 +15,9 @@ export const metadata: Metadata = {
         description: 'Checklist interactive des documents pour votre déclaration de revenus.',
         images: ['/og-outils.png'],
     },
+    alternates: {
+        canonical: '/outils/documents',
+    },
 };
 
 export default function DocumentsPage() {

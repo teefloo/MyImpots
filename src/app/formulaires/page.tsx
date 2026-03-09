@@ -17,6 +17,9 @@ export const metadata: Metadata = {
         description: 'Tous les formulaires de la déclaration de revenus 2025.',
         images: ['/og-image.png'],
     },
+    alternates: {
+        canonical: '/formulaires',
+    },
 };
 
 export default function FormulairesPage() {

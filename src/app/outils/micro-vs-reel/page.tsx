@@ -15,6 +15,9 @@ export const metadata: Metadata = {
         description: 'Auto-entrepreneurs : quel régime fiscal choisir ? Comparez micro et réel.',
         images: ['/og-outils.png'],
     },
+    alternates: {
+        canonical: '/outils/micro-vs-reel',
+    },
 };
 
 export default function MicroVsReelPage() {

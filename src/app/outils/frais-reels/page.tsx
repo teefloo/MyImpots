@@ -15,6 +15,9 @@ export const metadata: Metadata = {
         description: 'Comparez frais réels et abattement forfaitaire pour optimiser votre déclaration.',
         images: ['/og-outils.png'],
     },
+    alternates: {
+        canonical: '/outils/frais-reels',
+    },
 };
 
 export default function FraisReelsPage() {

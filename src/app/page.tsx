@@ -1,7 +1,11 @@
-'use client';
-
-import { useState } from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
+};
 import SearchBar from '@/components/SearchBar';
 import { taxBoxes } from '@/data/tax-boxes';
 import { categories } from '@/data/categories';

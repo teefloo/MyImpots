@@ -17,6 +17,9 @@ export const metadata: Metadata = {
         description: 'Simulateurs et comparateurs gratuits pour votre déclaration de revenus 2025.',
         images: ['/og-outils.png'],
     },
+    alternates: {
+        canonical: '/outils',
+    },
 };
 
 export default function OutilsPage() {
