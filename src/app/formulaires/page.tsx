@@ -6,6 +6,17 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'Formulaires fiscaux',
     description: 'Tous les formulaires fiscaux français : 2042, 2042-C, 2042-C-PRO, 2042-RICI, 2044, 2047.',
+    openGraph: {
+        title: 'Formulaires Fiscaux | MyImpots',
+        description: 'Retrouvez tous les formulaires de la déclaration de revenus : 2042, 2042-C, 2042-C-PRO, 2042-RICI, 2044, 2047.',
+        images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'MyImpots — Formulaires fiscaux' }],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Formulaires Fiscaux | MyImpots',
+        description: 'Tous les formulaires de la déclaration de revenus 2025.',
+        images: ['/og-image.png'],
+    },
 };
 
 export default function FormulairesPage() {

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { faqEntries } from '@/data/faq';
 
 export const metadata: Metadata = {
     title: 'FAQ — Questions fréquentes sur la déclaration de revenus',
@@ -23,6 +24,27 @@ export const metadata: Metadata = {
     },
 };
 
+const jsonLdFaq = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqEntries.map((entry) => ({
+        '@type': 'Question',
+        name: entry.question,
+        acceptedAnswer: {
+            '@type': 'Answer',
+            text: entry.answer,
+        },
+    })),
+};
+
 export default function FAQLayout({ children }: { children: React.ReactNode }) {
-    return <>{children}</>;
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }}
+            />
+            {children}
+        </>
+    );
 }

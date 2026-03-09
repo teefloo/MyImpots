@@ -54,12 +54,32 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  alternates: {
+    canonical: '/',
+  },
+};
+
+const jsonLdWebSite = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'MyImpots',
+  url: 'https://myimpots.fr',
+  description: 'Guide des cases fiscales et outils pour votre déclaration de revenus 2025.',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: 'https://myimpots.fr/cases?q={search_term_string}',
+    'query-input': 'required name=search_term_string',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
+        />
         <div style={{ overflowX: 'clip', position: 'relative', width: '100%' }}>
           <div className="bg-blobs-container">
             {/* Animated Liquid Blobs */}
