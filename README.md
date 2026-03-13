@@ -1,3 +1,13 @@
+<p align="center">
+  <h1 align="center">MyImpots</h1>
+</p>
+
+<p align="center">
+  <strong>Simplifiez votre gestion fiscale. Une application web Next.js intuitive pour suivre vos déclarations, calculer vos déductions et organiser vos documents financiers en toute sécurité.</strong>
+</p>
+
+---
+
 # MyImpots
 
 Un guide complet et des outils pour votre déclaration de revenus 2025.
