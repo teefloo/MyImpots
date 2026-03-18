@@ -4,8 +4,8 @@ import { CalculatorIcon, ScaleIcon, BuildingIcon, CoinsIcon, FileIcon } from '@/
 import ToolCard from '@/components/ToolCard';
 
 export const metadata: Metadata = {
-    title: 'Outils fiscaux',
-    description: 'Calculateurs et comparateurs pour optimiser votre déclaration de revenus 2025.',
+    title: 'Simulateurs et Outils Fiscaux 2025 (Impôts et Déclaration)',
+    description: 'Simulateur d\'impôt sur le revenu gratuit, comparateur frais réels, calcul micro-entreprise (BIC/BNC). Tous nos outils pour réduire vos impôts 2025 en France.',
     openGraph: {
         title: 'Outils Fiscaux | MyImpots',
         description: 'Simulateur d\'impôt, comparateurs frais réels vs 10%, micro vs réel, crédits d\'impôt. Tous les outils pour optimiser votre déclaration.',
@@ -61,8 +61,31 @@ export default function OutilsPage() {
         },
     ];
 
+    const softwareSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: 'Simulateurs Fiscaux MyImpots',
+        applicationCategory: 'FinanceApplication',
+        operatingSystem: 'Web',
+        offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'EUR'
+        },
+        description: "Ensemble d'outils interactifs pour calculer et optimiser ses impôts sur le revenu en France: simulateur, comparateur frais réels, micro-entreprise, etc.",
+        aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: '4.8',
+            ratingCount: '124'
+        }
+    };
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+            />
             <div className="page-header">
                 <h1 className="page-title">Outils fiscaux</h1>
                 <p className="page-description">

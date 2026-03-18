@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a **Next.js 16 + React 19 + TypeScript** application that provides French tax guidance. The app helps users understand tax form boxes, use simulators, and navigate tax-related information for French income tax declarations.
+This is a **Next.js 16 + React 19 + TypeScript** application that provides French tax guidance. The app helps users understand tax form boxes, use simulators, and navigate tax-related information for French income tax declarations. The project also utilizes **Jimp** and **Sharp** for image processing tasks, and **Agentation** for agentic automation scripts.
 
 ---
 

@@ -17,7 +17,7 @@ export default function Footer() {
                         </p>
                     </div>
 
-                    <div>
+                    <nav aria-label="Menu de navigation secondaire">
                         <h4 className="footer-heading">Navigation</h4>
                         <ul className="footer-links">
                             <li><Link href="/cases">Cases fiscales</Link></li>
@@ -26,9 +26,9 @@ export default function Footer() {
                             <li><Link href="/calendrier">Calendrier fiscal</Link></li>
                             <li><Link href="/faq">FAQ</Link></li>
                         </ul>
-                    </div>
+                    </nav>
 
-                    <div>
+                    <nav aria-label="Outils et simulateurs fiscaux">
                         <h4 className="footer-heading">Outils</h4>
                         <ul className="footer-links">
                             <li><Link href="/outils/simulateur">Simulateur d&apos;impôt</Link></li>
@@ -37,9 +37,9 @@ export default function Footer() {
                             <li><Link href="/outils/credits-impot">Crédits d&apos;impôt</Link></li>
                             <li><Link href="/outils/documents">Documents nécessaires</Link></li>
                         </ul>
-                    </div>
+                    </nav>
 
-                    <div>
+                    <nav aria-label="Ressources gouvernementales et officielles">
                         <h4 className="footer-heading">Ressources officielles</h4>
                         <ul className="footer-links">
                             <li>
@@ -63,7 +63,7 @@ export default function Footer() {
                                 </a>
                             </li>
                         </ul>
-                    </div>
+                    </nav>
                 </div>
 
                 <div className="footer-bottom">

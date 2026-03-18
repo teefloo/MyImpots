@@ -2,6 +2,17 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
+  title: 'Calcul, Simulateur et Guide des Impôts en France 2025',
+  description: 'Le site n°1 pour comprendre, simuler et optimiser vos impôts en France. Accédez au dictionnaire complet des cases fiscales (2042) et à nos simulateurs 100% gratuits.',
+  openGraph: {
+    title: 'Calcul, Simulateur et Guide des Impôts en France 2025',
+    description: 'Comprendre, simuler et optimiser vos impôts en France facilement.',
+    url: '/',
+  },
+  twitter: {
+    title: 'Calcul, Simulateur et Guide des Impôts en France 2025',
+    description: 'Comprendre, simuler et optimiser vos impôts en France facilement.',
+  },
   alternates: {
     canonical: '/',
   },
@@ -67,10 +78,12 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="hero">
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <h1>Votre déclaration de revenus, simplifiée</h1>
+          <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 800, marginBottom: '1.5rem', lineHeight: 1.1 }}>
+            Déclaration de Revenus & Impôts en France 2025
+          </h1>
           <p>
-            Trouvez instantanément le numéro d&apos;une case fiscale, comprenez ce qu&apos;elle
-            signifie, et utilisez nos outils pour optimiser votre déclaration.
+            Trouvez instantanément le numéro d&apos;une case fiscale, comprenez son impact sur vos impôts,
+            et utilisez nos simulateurs gratuits pour optimiser votre déclaration.
           </p>
 
 
@@ -98,9 +111,9 @@ export default function HomePage() {
       {/* Tools Section */}
       <section className="section">
         <div className="container">
-          <h2 className="section-title">Outils pour votre déclaration</h2>
+          <h2 className="section-title">Nos Outils et Simulateurs d&apos;Impôts</h2>
           <p className="section-subtitle">
-            Calculateurs, comparateurs et ressources pour faciliter votre déclaration
+            Calculateurs, comparateurs et ressources incontournables pour limiter vos impôts.
           </p>
           <div className="cards-grid">
             {tools.map((tool) => (
@@ -113,9 +126,9 @@ export default function HomePage() {
       {/* Categories Section */}
       <section className="section">
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <h2 className="section-title">Explorer par catégorie</h2>
+          <h2 className="section-title">Explorer les Cases Fiscales par Thématique</h2>
           <p className="section-subtitle">
-            Parcourez les cases fiscales par thématique
+            Toutes les cases de la déclaration 2042 expliquées simplement et classées par catégorie.
           </p>
           <div className="cards-grid">
             {categories.map((cat) => (
@@ -136,8 +149,8 @@ export default function HomePage() {
       {/* Key Info Section */}
       <section className="section">
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <h2 className="section-title">Informations essentielles — Revenus 2025</h2>
-          <p className="section-subtitle">Les chiffres clés pour votre déclaration</p>
+          <h2 className="section-title">Informations Essentielles & Barème Impôt 2025</h2>
+          <p className="section-subtitle">Les seuils, dates et chiffres clés officiels pour votre déclaration.</p>
 
           <div className="cards-grid">
             <div className="card">

@@ -17,16 +17,18 @@ export const metadata: Metadata = {
   description:
     'Trouvez facilement le numéro d\'une case fiscale, comprenez à quoi elle correspond, et utilisez nos outils (simulateur, comparateurs) pour remplir votre déclaration de revenus 2025.',
   keywords: [
-    'impôts',
-    'déclaration revenus',
-    'cases fiscales',
-    'formulaire 2042',
-    'simulateur impôt',
-    'frais réels',
-    'micro-BIC',
+    'impôts 2025',
+    'déclaration impots france',
+    'cases fiscales 2042',
+    'simulateur impôt gratuit',
+    'calcul impôt 2025',
+    'tranches impots',
+    'déduction frais réels',
+    'micro-BIC ou réel',
     'micro-BNC',
-    'crédits impôt',
-    'revenus 2025',
+    "crédits d'impôt",
+    'réduction impôt',
+    'optimisation fiscale france',
   ],
   openGraph: {
     title: 'MyImpots — Guide complet de la déclaration de revenus 2025',
@@ -58,15 +60,32 @@ export const metadata: Metadata = {
 
 const jsonLdWebSite = {
   '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'MyImpots',
-  url: 'https://myimpots.com',
-  description: 'Guide des cases fiscales et outils pour votre déclaration de revenus 2025.',
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: 'https://myimpots.com/cases?q={search_term_string}',
-    'query-input': 'required name=search_term_string',
-  },
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://myimpots.com/#website',
+      name: 'MyImpots',
+      url: 'https://myimpots.com',
+      description: 'Guide complet pour comprendre vos impôts en France et remplir facilement votre déclaration de revenus 2025.',
+      publisher: {
+        '@id': 'https://myimpots.com/#organization',
+      },
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: 'https://myimpots.com/cases?q={search_term_string}',
+        'query-input': 'required name=search_term_string',
+      },
+      inLanguage: 'fr-FR',
+    },
+    {
+      '@type': 'Organization',
+      '@id': 'https://myimpots.com/#organization',
+      name: 'MyImpots',
+      url: 'https://myimpots.com',
+      logo: 'https://myimpots.com/og-image.png',
+      description: "Outils gratuits et guides pour la déclaration d'impôts en France.",
+    }
+  ]
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

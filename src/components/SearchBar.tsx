@@ -48,6 +48,7 @@ export default function SearchBar({ variant = 'page' }: SearchBarProps) {
         <div className="search-container" ref={wrapperRef}>
             <input
                 type="text"
+                aria-label="Rechercher une case fiscale ou un mot-clé"
                 className={variant === 'hero' ? 'search-input' : `search-input-${variant}`}
                 placeholder="Ex. 1AJ, frais réels, dons..."
                 value={query}
