@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { PLAFOND_AVANTAGES_FISCAUX, ABATTEMENT_10_POURCENT_MIN, ABATTEMENT_10_POURCENT_MAX } from '@/data/tax-rates';
+import { PLAFOND_AVANTAGES_FISCAUX } from '@/data/tax-rates';
 import { CoinsIcon } from '@/components/SVGIcons';
 
 export default function CreditsImpotClient() {

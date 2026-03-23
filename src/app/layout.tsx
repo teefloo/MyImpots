@@ -8,14 +8,14 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL
     || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : null)
-    || 'https://myimpots.com'
+    || 'https://www.myimpots.com'
   ),
   title: {
-    default: 'MyImpots — Guide des cases fiscales et outils pour votre déclaration de revenus 2025',
+    default: 'MyImpots — Déclaration de revenus 2025 : Simulateur et aide aux cases',
     template: '%s | MyImpots',
   },
   description:
-    'Trouvez facilement le numéro d\'une case fiscale, comprenez à quoi elle correspond, et utilisez nos outils (simulateur, comparateurs) pour remplir votre déclaration de revenus 2025.',
+    'Optimisez vos impôts 2025 avec MyImpots. Trouvez la bonne case fiscale 2042, calculez votre impôt net grâce à notre simulateur gratuit et réduisez vos impôts en toute simplicité.',
   keywords: [
     'impôts 2025',
     'déclaration impots france',
@@ -31,14 +31,14 @@ export const metadata: Metadata = {
     'optimisation fiscale france',
   ],
   openGraph: {
-    title: 'MyImpots — Guide complet de la déclaration de revenus 2025',
-    description: 'Trouvez les cases fiscales, simulez votre impôt, comparez les régimes fiscaux. Tous les outils pour simplifier votre déclaration.',
+    title: 'MyImpots — Optimisez et simplifiez votre déclaration de revenus 2025',
+    description: 'Ne payez plus un centime de trop ! Simulez vos impôts, trouvez les cases 2042 et optimisez votre fiscalité avec le guide gratuit MyImpots.',
     type: 'website',
     locale: 'fr_FR',
     siteName: 'MyImpots',
     images: [
       {
-        url: '/og-image.png',
+        url: '/logo.png',
         width: 1200,
         height: 630,
         alt: 'MyImpots — Votre déclaration de revenus, simplifiée',
@@ -48,9 +48,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MyImpots — Votre déclaration de revenus, simplifiée',
-    description: 'Trouvez les cases fiscales, simulez votre impôt, comparez les régimes. Outils gratuits pour votre déclaration 2025.',
-    images: ['/og-image.png'],
+    title: 'MyImpots — Optimisez et simplifiez votre déclaration de revenus 2025',
+    description: 'Simulateur gratuit, dictionnaire complet des cases 2042 et conseils fiscaux. Payez le juste impôt en 2025 au lieu de surpayer.',
+    images: ['/logo.png'],
   },
   robots: {
     index: true,
@@ -63,26 +63,26 @@ const jsonLdWebSite = {
   '@graph': [
     {
       '@type': 'WebSite',
-      '@id': 'https://myimpots.com/#website',
+      '@id': 'https://www.myimpots.com/#website',
       name: 'MyImpots',
-      url: 'https://myimpots.com',
+      url: 'https://www.myimpots.com',
       description: 'Guide complet pour comprendre vos impôts en France et remplir facilement votre déclaration de revenus 2025.',
       publisher: {
         '@id': 'https://myimpots.com/#organization',
       },
       potentialAction: {
         '@type': 'SearchAction',
-        target: 'https://myimpots.com/cases?q={search_term_string}',
+        target: 'https://www.myimpots.com/cases?q={search_term_string}',
         'query-input': 'required name=search_term_string',
       },
       inLanguage: 'fr-FR',
     },
     {
       '@type': 'Organization',
-      '@id': 'https://myimpots.com/#organization',
+      '@id': 'https://www.myimpots.com/#organization',
       name: 'MyImpots',
-      url: 'https://myimpots.com',
-      logo: 'https://myimpots.com/og-image.png',
+      url: 'https://www.myimpots.com',
+      logo: 'https://www.myimpots.com/logo.png',
       description: "Outils gratuits et guides pour la déclaration d'impôts en France.",
     }
   ]

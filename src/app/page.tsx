@@ -2,16 +2,16 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Calcul, Simulateur et Guide des Impôts en France 2025',
+  title: 'Calcul, Simulateur et Guide des Impôts en France 2025 | MyImpots',
   description: 'Le site n°1 pour comprendre, simuler et optimiser vos impôts en France. Accédez au dictionnaire complet des cases fiscales (2042) et à nos simulateurs 100% gratuits.',
   openGraph: {
     title: 'Calcul, Simulateur et Guide des Impôts en France 2025',
-    description: 'Comprendre, simuler et optimiser vos impôts en France facilement.',
+    description: 'Comprendre, simuler et optimiser vos impôts en France facilement avec MyImpots.',
     url: '/',
   },
   twitter: {
     title: 'Calcul, Simulateur et Guide des Impôts en France 2025',
-    description: 'Comprendre, simuler et optimiser vos impôts en France facilement.',
+    description: 'Comprendre, simuler et optimiser vos impôts en France facilement avec MyImpots.',
   },
   alternates: {
     canonical: '/',
@@ -73,8 +73,46 @@ export default function HomePage() {
     },
   ];
 
+  const faqs = [
+    {
+      question: "Comment corriger une erreur sur ma déclaration d'impôts 2024 (revenus 2023) ou 2025 ?",
+      answer: "Si vous constatez une erreur après avoir validé votre déclaration en ligne, vous pouvez utiliser le service de correction en ligne sur le site impots.gouv.fr. Ce service est généralement ouvert à partir de mi-août jusqu'à fin novembre pour la campagne de l'année en cours."
+    },
+    {
+      question: "Quelles sont les dates limites de la déclaration de revenus en 2025 ?",
+      answer: "La campagne ouvre courant avril. La date limite pour la déclaration en ligne varie ensuite selon votre numéro de département (Zone 1 : départements 01 à 19 fin mai, Zone 2 : départements 20 à 54 fin mai/début juin, Zone 3 : départements 55 à 976 début juin). La déclaration au format papier a une date limite unique fixée en mai."
+    },
+    {
+      question: "Quelle est la principale différence entre la déduction forfaitaire de 10 % et les frais réels ?",
+      answer: "Un abattement forfaitaire de 10 % est automatiquement appliqué sur vos salaires pour couvrir vos frais professionnels. Cependant, si vos frais réels (télétravail, repas, trajets réguliers domicile-travail) sont supérieurs à ce montant de 10 %, il est plus avantageux de renoncer à l'abattement et de déclarer vos frais au réel."
+    },
+    {
+      question: "Vaut-il mieux choisir le régime Micro-BIC/BNC ou le régime réel pour mon activité ?",
+      answer: "Le régime Micro est le plus simple et applique un abattement forfaitaire sur vos recettes pour calculer votre bénéfice imposé (34 % pour le BNC, 50 % ou 71 % pour le BIC selon l'activité). Si vos charges réelles (achats, frais de fonctionnement, loyers pro) excèdent cet abattement, le régime réel sera financièrement plus intéressant face aux impôts."
+    }
+  ];
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer
+      }
+    }))
+  };
+
   return (
     <>
+      {/* JSON-LD definition for Enhancements / Structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* Hero Section */}
       <section className="hero">
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -142,6 +180,29 @@ export default function HomePage() {
                 showButton={false}
               />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Cases - Internal Linking for SEO Indexation */}
+      <section className="section" style={{ background: 'var(--color-bg-secondary)', padding: 'var(--space-12) 0' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <h2 className="section-title text-center" style={{ fontSize: 'var(--text-xl)' }}>
+            Les cases les plus recherchées
+          </h2>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-3)', justifyContent: 'center', maxWidth: 800, margin: '0 auto' }}>
+            {['1AJ', '1AS', '7UF', '8SH', '2OP', '3VG', '5ND', '6DD', '7EA', '8TM'].map(boxNum => {
+              const box = taxBoxes.find(b => b.number === boxNum);
+              if (!box) return null;
+              return (
+                <Link key={boxNum} href={`/cases/${box.id}`} className="badge text-primary" style={{ background: 'var(--color-primary-light)', padding: 'var(--space-3) var(--space-4)', borderRadius: 'var(--radius-full)', fontWeight: 600, border: '1px solid var(--color-border)', textDecoration: 'none' }}>
+                  Case {boxNum} <span style={{ opacity: 0.7, fontWeight: 400, marginLeft: 4 }}>- {box.label.substring(0, 30)}...</span>
+                </Link>
+              );
+            })}
+            <Link href="/cases" className="badge" style={{ padding: 'var(--space-3) var(--space-4)', borderRadius: 'var(--radius-full)', fontWeight: 600, border: '1px solid var(--color-border)', textDecoration: 'none' }}>
+              Voir toutes les cases →
+            </Link>
           </div>
         </div>
       </section>
@@ -248,6 +309,28 @@ export default function HomePage() {
                 Comparer micro vs réel →
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="section" style={{ background: 'var(--color-bg-secondary)', padding: 'var(--space-16) 0' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <h2 className="section-title text-center">Questions Fréquentes sur les Impôts (FAQ)</h2>
+          <p className="section-subtitle text-center" style={{ maxWidth: '800px', margin: '0 auto var(--space-8)' }}>
+            Les réponses aux questions les plus courantes pour vous aider lors de votre déclaration de revenus.
+          </p>
+          <div className="faq-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'var(--space-6)' }}>
+            {faqs.map((faq, idx) => (
+              <div key={idx} className="card" style={{ padding: 'var(--space-5)', display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+                <h3 style={{ fontSize: 'var(--text-lg)', fontWeight: 700, color: 'var(--color-text)' }}>
+                  {faq.question}
+                </h3>
+                <p style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--text-md)', lineHeight: '1.7' }}>
+                  {faq.answer}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { taxBoxes, TaxBox } from '@/data/tax-boxes';
 import { categories } from '@/data/categories';
 import { forms } from '@/data/forms';
-import { SearchIcon } from '@/components/SVGIcons';
+
 
 export default function BoxDetailClient({ box }: { box: TaxBox }) {
     const category = categories.find((c) => c.id === box.categoryId);

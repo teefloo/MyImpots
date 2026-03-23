@@ -1,4 +1,4 @@
-import Link from 'next/link';
+
 import type { Metadata } from 'next';
 import { CalculatorIcon, ScaleIcon, BuildingIcon, CoinsIcon, FileIcon } from '@/components/SVGIcons';
 import ToolCard from '@/components/ToolCard';
@@ -80,11 +80,34 @@ export default function OutilsPage() {
         }
     };
 
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Accueil',
+                item: 'https://www.myimpots.com'
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Outils',
+                item: 'https://www.myimpots.com/outils'
+            }
+        ]
+    };
+
     return (
         <>
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
             <div className="page-header">
                 <h1 className="page-title">Outils fiscaux</h1>

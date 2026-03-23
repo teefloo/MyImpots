@@ -1,91 +1,65 @@
-'use client';
+import type { Metadata } from 'next';
+import FaqClient from './FaqClient';
+import { faqEntries } from '@/data/faq';
 
-import { useState } from 'react';
-import { faqEntries, faqCategories } from '@/data/faq';
-import { Accordion } from '@/components/Accordion';
-import { SearchIcon, HelpCircleIcon } from '@/components/SVGIcons';
+export const metadata: Metadata = {
+    title: 'Foire Aux Questions (FAQ) — Impôts France 2025',
+    description: 'Toutes les réponses à vos questions sur la déclaration de revenus, les dates clés, les frais réels, le prélèvement à la source et plus encore.',
+    openGraph: {
+        title: 'Foire Aux Questions (FAQ) — Impôts France',
+        description: 'Toutes les réponses à vos questions sur la déclaration de revenus.',
+        url: '/faq',
+    },
+    alternates: {
+        canonical: '/faq',
+    },
+};
 
 export default function FaqPage() {
-    const [openId, setOpenId] = useState<string | null>(null);
-    const [selectedCategory, setSelectedCategory] = useState('');
-    const [searchQuery, setSearchQuery] = useState('');
+    const faqSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqEntries.map(entry => ({
+            '@type': 'Question',
+            name: entry.question,
+            acceptedAnswer: {
+                '@type': 'Answer',
+                text: entry.answer
+            }
+        }))
+    };
 
-    const filtered = faqEntries.filter((e) => {
-        if (selectedCategory && e.category !== selectedCategory) return false;
-        if (searchQuery.trim()) {
-            const q = searchQuery.toLowerCase();
-            return e.question.toLowerCase().includes(q) || e.answer.toLowerCase().includes(q);
-        }
-        return true;
-    });
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Accueil',
+                item: 'https://www.myimpots.com'
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'FAQ',
+                item: 'https://www.myimpots.com/faq'
+            }
+        ]
+    };
 
     return (
         <>
-            <div className="page-header">
-                <h1 className="page-title flex-center gap-3">
-                    <HelpCircleIcon size={32} className="text-primary" />
-                    Foire aux questions
-                </h1>
-                <p className="page-description">
-                    Réponses aux questions les plus fréquentes sur la déclaration de revenus
-                </p>
-            </div>
-
-            <div className="container" style={{ paddingBottom: 'var(--space-16)', maxWidth: 800 }}>
-                {/* Search */}
-                <div className="search-container mb-6">
-                    <span className="search-icon"><SearchIcon size={20} /></span>
-                    <input
-                        type="text"
-                        className="search-input-page"
-                        placeholder="Rechercher dans la FAQ..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                </div>
-
-                {/* Category filters */}
-                <div className="tab-filters mb-6">
-                    <button
-                        className={`tab-filter ${!selectedCategory ? 'active' : ''}`}
-                        onClick={() => setSelectedCategory('')}
-                    >
-                        Toutes
-                    </button>
-                    {faqCategories.map((cat) => (
-                        <button
-                            key={cat.id}
-                            className={`tab-filter ${selectedCategory === cat.id ? 'active' : ''}`}
-                            onClick={() => setSelectedCategory(selectedCategory === cat.id ? '' : cat.id)}
-                        >
-                            {cat.label}
-                        </button>
-                    ))}
-                </div>
-
-                {/* Accordion */}
-                <div className="accordion">
-                    {filtered.map((entry) => (
-                        <Accordion
-                            key={entry.id}
-                            id={entry.id}
-                            title={entry.question}
-                            content={entry.answer}
-                            isOpen={openId === entry.id}
-                            onClick={() => setOpenId(openId === entry.id ? null : entry.id)}
-                        />
-                    ))}
-                </div>
-
-                {filtered.length === 0 && (
-                    <div className="text-center" style={{ padding: 'var(--space-12) 0', color: 'var(--color-text-secondary)' }}>
-                        <div className="flex-center mb-4">
-                            <SearchIcon size={48} className="text-primary" style={{ opacity: 0.5 }} />
-                        </div>
-                        <p>Aucune question ne correspond à votre recherche</p>
-                    </div>
-                )}
-            </div>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
+            <FaqClient />
         </>
     );
 }
+

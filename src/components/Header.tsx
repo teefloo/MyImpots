@@ -8,18 +8,17 @@ import SearchBar from './SearchBar';
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
-    const [showSearch, setShowSearch] = useState(true);
+    const [isScrolled, setIsScrolled] = useState(false);
     const pathname = usePathname();
     const headerRef = useRef<HTMLElement>(null);
 
+    const showSearch = pathname !== '/' ? true : isScrolled;
+
     useEffect(() => {
-        if (pathname !== '/') {
-            setShowSearch(true);
-            return;
-        }
+        if (pathname !== '/') return;
 
         const handleScroll = () => {
-            setShowSearch(window.scrollY > 350);
+            setIsScrolled(window.scrollY > 350);
         };
 
         handleScroll(); // Check initial scroll position

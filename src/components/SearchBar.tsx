@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { searchTaxBoxes, TaxBox } from '@/data/tax-boxes';
+import { searchTaxBoxes } from '@/data/tax-boxes';
 import { SearchIcon } from './SVGIcons';
 
 interface SearchBarProps {
@@ -12,20 +12,11 @@ interface SearchBarProps {
 
 export default function SearchBar({ variant = 'page' }: SearchBarProps) {
     const [query, setQuery] = useState('');
-    const [results, setResults] = useState<TaxBox[]>([]);
     const [isOpen, setIsOpen] = useState(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
 
-    useEffect(() => {
-        if (query.trim().length > 1) {
-            setResults(searchTaxBoxes(query).slice(0, 5));
-            setIsOpen(true);
-        } else {
-            setResults([]);
-            setIsOpen(false);
-        }
-    }, [query]);
+    const results = query.trim().length > 1 ? searchTaxBoxes(query).slice(0, 5) : [];
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
@@ -52,7 +43,12 @@ export default function SearchBar({ variant = 'page' }: SearchBarProps) {
                 className={variant === 'hero' ? 'search-input' : `search-input-${variant}`}
                 placeholder="Ex. 1AJ, frais réels, dons..."
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => {
+                    const newQuery = e.target.value;
+                    setQuery(newQuery);
+                    if (newQuery.trim().length > 1) setIsOpen(true);
+                    else setIsOpen(false);
+                }}
                 onFocus={() => {
                     if (query.trim().length > 1) setIsOpen(true);
                 }}

@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { profiles, documentCategories, getDocumentsForProfile } from '@/data/documents-checklist';
+
 import { FileIcon } from '@/components/SVGIcons';
+import { profiles, getDocumentsForProfile } from '@/data/documents-checklist';
 
 export default function DocumentsClient() {
     const [selectedProfile, setSelectedProfile] = useState('tous');
