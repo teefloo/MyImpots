@@ -3,6 +3,7 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Agentation } from 'agentation';
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -111,6 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {process.env.NODE_ENV === 'development' && !process.env.VERCEL && (
           <Agentation endpoint="http://localhost:4747" />
         )}
+        <Analytics />
       </body>
     </html>
   );
