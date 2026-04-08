@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
             userAgent: '*',
             allow: '/',
         },
-        sitemap: 'https://www.myimpots.com/sitemap.xml',
+        sitemap: 'https://myimpots.com/sitemap.xml',
     };
 }

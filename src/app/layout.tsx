@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL
     || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : null)
-    || 'https://www.myimpots.com'
+    || 'https://myimpots.com'
   ),
   title: {
     default: 'MyImpots — Déclaration de revenus 2025 : Simulateur et aide aux cases',
@@ -64,26 +64,26 @@ const jsonLdWebSite = {
   '@graph': [
     {
       '@type': 'WebSite',
-      '@id': 'https://www.myimpots.com/#website',
+      '@id': 'https://myimpots.com/#website',
       name: 'MyImpots',
-      url: 'https://www.myimpots.com',
+      url: 'https://myimpots.com',
       description: 'Guide complet pour comprendre vos impôts en France et remplir facilement votre déclaration de revenus 2025.',
       publisher: {
         '@id': 'https://myimpots.com/#organization',
       },
       potentialAction: {
         '@type': 'SearchAction',
-        target: 'https://www.myimpots.com/cases?q={search_term_string}',
+        target: 'https://myimpots.com/cases?q={search_term_string}',
         'query-input': 'required name=search_term_string',
       },
       inLanguage: 'fr-FR',
     },
     {
       '@type': 'Organization',
-      '@id': 'https://www.myimpots.com/#organization',
+      '@id': 'https://myimpots.com/#organization',
       name: 'MyImpots',
-      url: 'https://www.myimpots.com',
-      logo: 'https://www.myimpots.com/logo.png',
+      url: 'https://myimpots.com',
+      logo: 'https://myimpots.com/logo.png',
       description: "Outils gratuits et guides pour la déclaration d'impôts en France.",
     }
   ]

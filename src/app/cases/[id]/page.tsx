@@ -67,19 +67,19 @@ export default async function BoxDetailPage({ params }: { params: Promise<{ id: 
                 '@type': 'ListItem',
                 position: 1,
                 name: 'Accueil',
-                item: 'https://www.myimpots.com'
+                item: 'https://myimpots.com'
             },
             {
                 '@type': 'ListItem',
                 position: 2,
                 name: 'Cases fiscales',
-                item: 'https://www.myimpots.com/cases'
+                item: 'https://myimpots.com/cases'
             },
             {
                 '@type': 'ListItem',
                 position: 3,
                 name: `Case ${box.number}`,
-                item: `https://www.myimpots.com/cases/${id}`
+                item: `https://myimpots.com/cases/${id}`
             }
         ]
     };

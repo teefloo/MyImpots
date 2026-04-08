@@ -23,13 +23,13 @@ export default function CasesPage() {
                 '@type': 'ListItem',
                 position: 1,
                 name: 'Accueil',
-                item: 'https://www.myimpots.com'
+                item: 'https://myimpots.com'
             },
             {
                 '@type': 'ListItem',
                 position: 2,
                 name: 'Cases fiscales',
-                item: 'https://www.myimpots.com/cases'
+                item: 'https://myimpots.com/cases'
             }
         ]
     };

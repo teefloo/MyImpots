@@ -88,13 +88,13 @@ export default function OutilsPage() {
                 '@type': 'ListItem',
                 position: 1,
                 name: 'Accueil',
-                item: 'https://www.myimpots.com'
+                item: 'https://myimpots.com'
             },
             {
                 '@type': 'ListItem',
                 position: 2,
                 name: 'Outils',
-                item: 'https://www.myimpots.com/outils'
+                item: 'https://myimpots.com/outils'
             }
         ]
     };
