@@ -1,23 +1,33 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import { notFound, permanentRedirect } from 'next/navigation';
+
 import { taxBoxes, getTaxBoxById } from '@/data/tax-boxes';
-import { SearchIcon } from '@/components/SVGIcons';
+import type { TaxBox } from '@/data/tax-boxes';
 import BoxDetailClient from './BoxDetailClient';
 
 export function generateStaticParams() {
     return taxBoxes.map((box) => ({ id: box.id }));
 }
 
+function getTaxBoxByCanonicalId(id: string): TaxBox {
+    const exactBox = getTaxBoxById(id);
+
+    if (exactBox) {
+        return exactBox;
+    }
+
+    const canonicalBox = taxBoxes.find((box) => box.id.toLowerCase() === id.toLowerCase());
+
+    if (canonicalBox) {
+        permanentRedirect(`/cases/${canonicalBox.id}`);
+    }
+
+    notFound();
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
     const { id } = await params;
-    const box = getTaxBoxById(id);
-
-    if (!box) {
-        return {
-            title: 'Case non trouvée',
-            description: 'La case fiscale demandée n\'existe pas dans notre base.',
-        };
-    }
+    const box = getTaxBoxByCanonicalId(id);
 
     const title = `Case ${box.number} — ${box.label}`;
     const description = box.description.substring(0, 155) + (box.description.length > 155 ? '…' : '');
@@ -44,20 +54,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function BoxDetailPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
-    const box = getTaxBoxById(id);
-
-    if (!box) {
-        return (
-            <div className="container text-center" style={{ padding: 'var(--space-16) 0' }}>
-                <div className="flex-center mb-4">
-                    <SearchIcon size={48} className="text-primary" style={{ opacity: 0.5 }} />
-                </div>
-                <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: 700 }} className="mb-2">Case non trouvée</h1>
-                <p style={{ color: 'var(--color-text-secondary)' }}>La case demandée n&apos;existe pas dans notre base.</p>
-                <Link href="/cases" className="btn btn-primary mt-6">Retour aux cases fiscales</Link>
-            </div>
-        );
-    }
+    const box = getTaxBoxByCanonicalId(id);
 
     const breadcrumbSchema = {
         '@context': 'https://schema.org',
