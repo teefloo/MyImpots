@@ -3,74 +3,82 @@ import { taxBoxes } from '@/data/tax-boxes';
 
 const BASE_URL = 'https://myimpots.com';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-    const now = new Date();
+// Last-modified dates reflect the actual date each page's content was last
+// changed (per git history), not the build date — an always-"today" value
+// trains crawlers to distrust the freshness signal. Update the relevant date
+// here when you meaningfully change a page's content.
+const LAST_MODIFIED = {
+    home: new Date('2026-03-23'),
+    tools: new Date('2026-04-27'),
+    taxBoxes: new Date('2026-04-27'),
+};
 
+export default function sitemap(): MetadataRoute.Sitemap {
     // Static pages
     const staticPages: MetadataRoute.Sitemap = [
         {
             url: BASE_URL,
-            lastModified: now,
+            lastModified: LAST_MODIFIED.home,
             changeFrequency: 'monthly',
             priority: 1,
         },
         {
             url: `${BASE_URL}/cases`,
-            lastModified: now,
+            lastModified: LAST_MODIFIED.tools,
             changeFrequency: 'monthly',
             priority: 0.9,
         },
         {
             url: `${BASE_URL}/outils`,
-            lastModified: now,
+            lastModified: LAST_MODIFIED.tools,
             changeFrequency: 'monthly',
             priority: 0.8,
         },
         {
             url: `${BASE_URL}/outils/simulateur`,
-            lastModified: now,
+            lastModified: LAST_MODIFIED.tools,
             changeFrequency: 'yearly',
             priority: 0.8,
         },
         {
             url: `${BASE_URL}/outils/frais-reels`,
-            lastModified: now,
+            lastModified: LAST_MODIFIED.tools,
             changeFrequency: 'yearly',
             priority: 0.7,
         },
         {
             url: `${BASE_URL}/outils/micro-vs-reel`,
-            lastModified: now,
+            lastModified: LAST_MODIFIED.tools,
             changeFrequency: 'yearly',
             priority: 0.7,
         },
         {
             url: `${BASE_URL}/outils/credits-impot`,
-            lastModified: now,
+            lastModified: LAST_MODIFIED.tools,
             changeFrequency: 'yearly',
             priority: 0.7,
         },
         {
             url: `${BASE_URL}/outils/documents`,
-            lastModified: now,
+            lastModified: LAST_MODIFIED.tools,
             changeFrequency: 'yearly',
             priority: 0.6,
         },
         {
             url: `${BASE_URL}/formulaires`,
-            lastModified: now,
+            lastModified: LAST_MODIFIED.tools,
             changeFrequency: 'yearly',
             priority: 0.7,
         },
         {
             url: `${BASE_URL}/calendrier`,
-            lastModified: now,
+            lastModified: LAST_MODIFIED.tools,
             changeFrequency: 'yearly',
             priority: 0.8,
         },
         {
             url: `${BASE_URL}/faq`,
-            lastModified: now,
+            lastModified: LAST_MODIFIED.tools,
             changeFrequency: 'monthly',
             priority: 0.6,
         },
@@ -79,7 +87,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Dynamic pages: one per tax box
     const taxBoxPages: MetadataRoute.Sitemap = taxBoxes.map((box) => ({
         url: `${BASE_URL}/cases/${box.id}`,
-        lastModified: now,
+        lastModified: LAST_MODIFIED.taxBoxes,
         changeFrequency: 'yearly' as const,
         priority: 0.5,
     }));
