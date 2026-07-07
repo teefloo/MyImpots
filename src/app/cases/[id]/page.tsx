@@ -9,6 +9,17 @@ export function generateStaticParams() {
     return taxBoxes.map((box) => ({ id: box.id }));
 }
 
+function truncateAtWordBoundary(text: string, maxLength: number): string {
+    if (text.length <= maxLength) {
+        return text;
+    }
+
+    const truncated = text.substring(0, maxLength);
+    const lastSpace = truncated.lastIndexOf(' ');
+
+    return `${truncated.substring(0, lastSpace)}…`;
+}
+
 function getTaxBoxByCanonicalId(id: string): TaxBox {
     const exactBox = getTaxBoxById(id);
 
@@ -30,7 +41,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     const box = getTaxBoxByCanonicalId(id);
 
     const title = `Case ${box.number} — ${box.label}`;
-    const description = box.description.substring(0, 155) + (box.description.length > 155 ? '…' : '');
+    const description = truncateAtWordBoundary(box.description, 155);
 
     return {
         title,
