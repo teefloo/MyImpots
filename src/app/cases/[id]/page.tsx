@@ -92,11 +92,42 @@ export default async function BoxDetailPage({ params }: { params: Promise<{ id: 
         ]
     };
 
+    const faqSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+            {
+                '@type': 'Question',
+                name: `Qu'est-ce que la case ${box.number} — ${box.label} ?`,
+                acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: box.description,
+                },
+            },
+            ...(box.eligibility
+                ? [
+                    {
+                        '@type': 'Question',
+                        name: `Qui est éligible à la case ${box.number} ?`,
+                        acceptedAnswer: {
+                            '@type': 'Answer',
+                            text: box.eligibility,
+                        },
+                    },
+                ]
+                : []),
+        ],
+    };
+
     return (
         <>
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
             />
             <BoxDetailClient box={box} />
         </>
