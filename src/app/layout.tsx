@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     siteName: 'MyImpots',
     images: [
       {
-        url: '/logo.png',
+        url: 'https://myimpots.com/logo.png',
         width: 1200,
         height: 630,
         alt: 'MyImpots — Votre déclaration de revenus, simplifiée',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'MyImpots — Optimisez et simplifiez votre déclaration de revenus 2025',
     description: 'Simulateur gratuit, dictionnaire complet des cases 2042 et conseils fiscaux. Payez le juste impôt en 2025 au lieu de surpayer.',
-    images: ['/logo.png'],
+    images: ['https://myimpots.com/logo.png'],
   },
   robots: {
     index: true,

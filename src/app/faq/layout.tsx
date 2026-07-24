@@ -7,14 +7,14 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'FAQ Impôts 2025 | MyImpots',
         description: 'Toutes les réponses à vos questions sur la déclaration d\'impôt sur les revenus.',
-        images: [{ url: '/og-faq.png', width: 1200, height: 630, alt: 'MyImpots — FAQ' }],
+        images: [{ url: 'https://myimpots.com/logo.png', width: 1200, height: 630, alt: 'MyImpots — FAQ' }],
         type: 'website',
     },
     twitter: {
         card: 'summary_large_image',
         title: 'FAQ Impôts 2025 | MyImpots',
         description: 'Trouvez rapidement une réponse à vos questions fiscales.',
-        images: ['/og-faq.png'],
+        images: ['https://myimpots.com/logo.png'],
     },
     alternates: {
         canonical: '/faq',

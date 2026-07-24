@@ -3,6 +3,8 @@ export interface FaqEntry {
     question: string;
     answer: string;
     category: string;
+    sourceUrl?: string;
+    sourceLabel?: string;
 }
 
 export const faqCategories = [
@@ -21,6 +23,8 @@ export const faqEntries: FaqEntry[] = [
         answer:
             'Toute personne domiciliée fiscalement en France doit déclarer ses revenus, même si elle n\'est pas imposable. Les personnes âgées de 18 ans et plus au 1er janvier 2025 qui n\'étaient pas rattachées au foyer fiscal de leurs parents doivent effectuer leur propre déclaration. Les non-résidents percevant des revenus de source française doivent également déclarer.',
         category: 'general',
+        sourceUrl: 'https://www.impots.gouv.fr/particulier/questions/qui-doit-declarer-ses-revenus',
+        sourceLabel: 'impots.gouv.fr',
     },
     {
         id: 'premiere-declaration',
@@ -35,6 +39,8 @@ export const faqEntries: FaqEntry[] = [
         answer:
             'Oui, la déclaration en ligne est obligatoire pour tous les contribuables disposant d\'un accès à internet à leur résidence principale. Des exceptions existent si vous résidez dans une zone blanche (absence de couverture internet), si vous ne savez pas utiliser internet, ou si vous effectuez votre toute première déclaration. Dans ces cas, la déclaration papier reste possible.',
         category: 'declaration',
+        sourceUrl: 'https://www.impots.gouv.fr/particulier/la-declaration-de-revenus-en-ligne',
+        sourceLabel: 'impots.gouv.fr',
     },
     {
         id: 'dates-limites',
@@ -42,6 +48,8 @@ export const faqEntries: FaqEntry[] = [
         answer:
             'Pour la déclaration des revenus 2025 :\n• Déclaration papier : 20 mai 2026\n• En ligne, zone 1 (départements 01-19 et non-résidents) : 21 mai 2026 à 23h59\n• En ligne, zone 2 (départements 20-54) : 28 mai 2026 à 23h59\n• En ligne, zone 3 (départements 55-976) : 4 juin 2026 à 23h59',
         category: 'declaration',
+        sourceUrl: 'https://www.impots.gouv.fr/particulier/la-declaration-de-revenus-en-ligne',
+        sourceLabel: 'impots.gouv.fr',
     },
     {
         id: 'declaration-pre-remplie',
@@ -56,6 +64,8 @@ export const faqEntries: FaqEntry[] = [
         answer:
             'Le quotient familial divise le revenu imposable par le nombre de parts fiscales du foyer pour atténuer la progressivité de l\'impôt. Un célibataire sans enfant a 1 part. Un couple marié/pacsé a 2 parts. Chaque enfant à charge ajoute 0,5 part (1 part à partir du 3ème enfant). L\'avantage fiscal est plafonné à 1 807 € par demi-part supplémentaire au-delà de celles accordées pour la situation matrimoniale.',
         category: 'calcul',
+        sourceUrl: 'https://www.impots.gouv.fr/particulier/questions/comment-est-calcule-limpot-sur-le-revenu',
+        sourceLabel: 'impots.gouv.fr',
     },
     {
         id: 'tranches-imposition',
@@ -63,6 +73,8 @@ export const faqEntries: FaqEntry[] = [
         answer:
             'Le barème 2026 (revenus 2025) est le suivant, par part de quotient familial :\n• Jusqu\'à 11 600 € : 0 %\n• De 11 601 € à 29 579 € : 11 %\n• De 29 580 € à 84 577 € : 30 %\n• De 84 578 € à 181 917 € : 41 %\n• Au-delà de 181 917 € : 45 %\n\nAttention : le taux marginal d\'imposition (TMI) ne s\'applique qu\'à la fraction de revenus qui tombe dans cette tranche, pas à l\'ensemble des revenus.',
         category: 'calcul',
+        sourceUrl: 'https://www.impots.gouv.fr/particulier/questions/comment-est-calcule-limpot-sur-le-revenu',
+        sourceLabel: 'impots.gouv.fr',
     },
     {
         id: 'taux-marginal-vs-moyen',
@@ -105,6 +117,8 @@ export const faqEntries: FaqEntry[] = [
         answer:
             'Depuis janvier 2019, l\'impôt est prélevé directement sur vos revenus chaque mois. Le taux est calculé à partir de votre dernière déclaration et actualisé en septembre. La déclaration annuelle reste obligatoire : elle permet de régulariser votre situation (remboursement si trop prélevé, complément si pas assez). Vous pouvez moduler votre taux en cours d\'année sur impots.gouv.fr si votre situation change significativement.',
         category: 'paiement',
+        sourceUrl: 'https://www.impots.gouv.fr/particulier/le-pr%C3%A9l%C3%A8vement-la-source',
+        sourceLabel: 'impots.gouv.fr',
     },
     {
         id: 'erreur-declaration',

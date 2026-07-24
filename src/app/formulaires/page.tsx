@@ -4,18 +4,18 @@ import { taxBoxes } from '@/data/tax-boxes';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Formulaires fiscaux',
-    description: 'Tous les formulaires fiscaux français : 2042, 2042-C, 2042-C-PRO, 2042-RICI, 2044, 2047.',
+    title: 'Formulaires fiscaux 2025 : 2042, 2042-C, 2044, 2047',
+    description: 'Découvrez tous les formulaires de la déclaration de revenus 2025 : 2042, 2042-C, 2042-C-PRO, 2042-RICI, 2044, 2047. Lien officiel et explication des cases.',
     openGraph: {
         title: 'Formulaires Fiscaux | MyImpots',
         description: 'Retrouvez tous les formulaires de la déclaration de revenus : 2042, 2042-C, 2042-C-PRO, 2042-RICI, 2044, 2047.',
-        images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'MyImpots — Formulaires fiscaux' }],
+        images: [{ url: 'https://myimpots.com/logo.png', width: 1200, height: 630, alt: 'MyImpots — Formulaires fiscaux' }],
     },
     twitter: {
         card: 'summary_large_image',
         title: 'Formulaires Fiscaux | MyImpots',
         description: 'Tous les formulaires de la déclaration de revenus 2025.',
-        images: ['/logo.png'],
+        images: ['https://myimpots.com/logo.png'],
     },
     alternates: {
         canonical: '/formulaires',
@@ -23,12 +23,22 @@ export const metadata: Metadata = {
 };
 
 export default function FormulairesPage() {
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://myimpots.com' },
+            { '@type': 'ListItem', position: 2, name: 'Formulaires', item: 'https://myimpots.com/formulaires' },
+        ],
+    };
+
     return (
         <>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
             <div className="page-header">
                 <h1 className="page-title">Formulaires fiscaux</h1>
                 <p className="page-description">
-                    Tous les formulaires de la déclaration de revenus 2025
+                    Tous les formulaires de la déclaration de revenus 2025 : téléchargez le CERFA officiel et découvrez quelles cases remplir pour votre situation.
                 </p>
             </div>
 

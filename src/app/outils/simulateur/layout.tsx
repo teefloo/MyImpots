@@ -6,13 +6,13 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Simulateur d\'Impôt 2026 | MyImpots',
         description: 'Estimez votre impôt, identifiez votre tranche marginale et comparez votre taux moyen. Gratuit et sans inscription.',
-        images: [{ url: '/og-simulateur.png', width: 1200, height: 630, alt: 'MyImpots — Simulateur d\'impôt' }],
+        images: [{ url: 'https://myimpots.com/logo.png', width: 1200, height: 630, alt: 'MyImpots — Simulateur d\'impôt' }],
     },
     twitter: {
         card: 'summary_large_image',
         title: 'Simulateur d\'Impôt 2026 | MyImpots',
         description: 'Calculez votre impôt sur le revenu en 1 minute chrono.',
-        images: ['/og-simulateur.png'],
+        images: ['https://myimpots.com/logo.png'],
     },
     alternates: {
         canonical: '/outils/simulateur',

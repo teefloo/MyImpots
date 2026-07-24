@@ -129,6 +129,26 @@ export default async function BoxDetailPage({ params }: { params: Promise<{ id: 
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
             />
+            <section className="section" style={{ paddingBottom: 0 }}>
+                <div className="container" style={{ maxWidth: 800 }}>
+                    <nav style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-4)' }}>
+                        <a href="/" style={{ color: 'var(--color-primary)', textDecoration: 'none' }}>Accueil</a>
+                        <span style={{ margin: '0 var(--space-2)' }}>/</span>
+                        <a href="/cases" style={{ color: 'var(--color-primary)', textDecoration: 'none' }}>Cases fiscales</a>
+                        <span style={{ margin: '0 var(--space-2)' }}>/</span>
+                        <span>Case {box.number}</span>
+                    </nav>
+                    <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: 800, marginBottom: 'var(--space-3)' }}>
+                        Case {box.number} : {box.label}
+                    </h1>
+                    <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.7, marginBottom: 'var(--space-2)' }}>
+                        La case <strong>{box.number}</strong> du formulaire 2042 est utilisée pour déclarer {box.label.toLowerCase()}. Retrouvez ci-dessous les conditions d&apos;éligibilité, les montants à renseigner et les conseils pour compléter votre déclaration.
+                    </p>
+                    <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>
+                        Référence officielle : <a href="https://www.impots.gouv.fr/formulaire/2042/declaration-des-revenus" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>formulaire 2042 — impots.gouv.fr</a>
+                    </p>
+                </div>
+            </section>
             <BoxDetailClient box={box} />
         </>
     );

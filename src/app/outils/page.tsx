@@ -9,13 +9,13 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Outils Fiscaux | MyImpots',
         description: 'Simulateur d\'impôt, comparateurs frais réels vs 10%, micro vs réel, crédits d\'impôt. Tous les outils pour optimiser votre déclaration.',
-        images: [{ url: '/og-outils.png', width: 1200, height: 630, alt: 'MyImpots — Outils pour votre déclaration' }],
+        images: [{ url: 'https://myimpots.com/logo.png', width: 1200, height: 630, alt: 'MyImpots — Outils pour votre déclaration' }],
     },
     twitter: {
         card: 'summary_large_image',
         title: 'Outils Fiscaux | MyImpots',
         description: 'Simulateurs et comparateurs gratuits pour votre déclaration de revenus 2025.',
-        images: ['/og-outils.png'],
+        images: ['https://myimpots.com/logo.png'],
     },
     alternates: {
         canonical: '/outils',
@@ -73,11 +73,7 @@ export default function OutilsPage() {
             priceCurrency: 'EUR'
         },
         description: "Ensemble d'outils interactifs pour calculer et optimiser ses impôts sur le revenu en France: simulateur, comparateur frais réels, micro-entreprise, etc.",
-        aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: '4.8',
-            ratingCount: '124'
-        }
+        url: 'https://myimpots.com/outils',
     };
 
     const breadcrumbSchema = {

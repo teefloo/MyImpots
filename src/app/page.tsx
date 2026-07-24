@@ -21,6 +21,7 @@ import SearchBar from '@/components/SearchBar';
 import { taxBoxes } from '@/data/tax-boxes';
 import { categories } from '@/data/categories';
 import { forms } from '@/data/forms';
+import { faqEntries } from '@/data/faq';
 import { CalculatorIcon, ScaleIcon, BuildingIcon, CoinsIcon, FileIcon, CalendarIcon, BarChartIcon, FileTextIcon } from '@/components/SVGIcons';
 import ToolCard from '@/components/ToolCard';
 
@@ -73,29 +74,10 @@ export default function HomePage() {
     },
   ];
 
-  const faqs = [
-    {
-      question: "Comment corriger une erreur sur ma déclaration d'impôts 2024 (revenus 2023) ou 2025 ?",
-      answer: "Si vous constatez une erreur après avoir validé votre déclaration en ligne, vous pouvez utiliser le service de correction en ligne sur le site impots.gouv.fr. Ce service est généralement ouvert à partir de mi-août jusqu'à fin novembre pour la campagne de l'année en cours."
-    },
-    {
-      question: "Quelles sont les dates limites de la déclaration de revenus en 2025 ?",
-      answer: "La campagne ouvre courant avril. La date limite pour la déclaration en ligne varie ensuite selon votre numéro de département (Zone 1 : départements 01 à 19 fin mai, Zone 2 : départements 20 à 54 fin mai/début juin, Zone 3 : départements 55 à 976 début juin). La déclaration au format papier a une date limite unique fixée en mai."
-    },
-    {
-      question: "Quelle est la principale différence entre la déduction forfaitaire de 10 % et les frais réels ?",
-      answer: "Un abattement forfaitaire de 10 % est automatiquement appliqué sur vos salaires pour couvrir vos frais professionnels. Cependant, si vos frais réels (télétravail, repas, trajets réguliers domicile-travail) sont supérieurs à ce montant de 10 %, il est plus avantageux de renoncer à l'abattement et de déclarer vos frais au réel."
-    },
-    {
-      question: "Vaut-il mieux choisir le régime Micro-BIC/BNC ou le régime réel pour mon activité ?",
-      answer: "Le régime Micro est le plus simple et applique un abattement forfaitaire sur vos recettes pour calculer votre bénéfice imposé (34 % pour le BNC, 50 % ou 71 % pour le BIC selon l'activité). Si vos charges réelles (achats, frais de fonctionnement, loyers pro) excèdent cet abattement, le régime réel sera financièrement plus intéressant face aux impôts."
-    }
-  ];
-
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map(faq => ({
+    mainEntity: faqEntries.map(faq => ({
       '@type': 'Question',
       name: faq.question,
       acceptedAnswer: {
@@ -124,7 +106,6 @@ export default function HomePage() {
             et utilisez nos simulateurs gratuits pour optimiser votre déclaration.
           </p>
 
-
           <div className="hero-search">
             <SearchBar variant="hero" />
           </div>
@@ -132,15 +113,19 @@ export default function HomePage() {
           <div className="hero-stats">
             <div className="hero-stat">
               <div className="hero-stat-value">{taxBoxes.length}+</div>
-              <div className="hero-stat-label">Cases référencées</div>
+              <div className="hero-stat-label">Cases 2042 référencées</div>
             </div>
             <div className="hero-stat">
               <div className="hero-stat-value">{forms.length}</div>
-              <div className="hero-stat-label">Formulaires couverts</div>
+              <div className="hero-stat-label">Formulaires Cerfa couverts</div>
             </div>
             <div className="hero-stat">
               <div className="hero-stat-value">5</div>
-              <div className="hero-stat-label">Outils interactifs</div>
+              <div className="hero-stat-label">Simulateurs gratuits</div>
+            </div>
+            <div className="hero-stat">
+              <div className="hero-stat-value">16</div>
+              <div className="hero-stat-label">Questions FAQ répondues</div>
             </div>
           </div>
         </div>
@@ -241,6 +226,9 @@ export default function HomePage() {
                   <span className="result-row-value text-error">45 %</span>
                 </div>
               </div>
+              <p className="text-xs" style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--space-3)' }}>
+                Source : <a href="https://www.impots.gouv.fr/particulier/questions/comment-est-calcule-limpot-sur-le-revenu" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>impots.gouv.fr</a> — Barème officiel revenus 2025
+              </p>
               <Link href="/outils/simulateur" className="btn btn-primary mt-4 w-full">
                 Simuler mon impôt →
               </Link>
@@ -273,6 +261,9 @@ export default function HomePage() {
                   <span className="result-row-value">4 juin</span>
                 </div>
               </div>
+              <p className="text-xs" style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--space-3)' }}>
+                Source : <a href="https://www.impots.gouv.fr/particulier/la-declaration-de-revenus-en-ligne" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>impots.gouv.fr</a> — Campagne déclaration 2026
+              </p>
               <Link href="/calendrier" className="btn btn-primary mt-4 w-full">
                 Voir le calendrier complet →
               </Link>
@@ -305,6 +296,9 @@ export default function HomePage() {
                   <span className="result-row-value">34 %</span>
                 </div>
               </div>
+              <p className="text-xs" style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--space-3)' }}>
+                Source : <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048941766" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>Légifrance</a> — Art. 50-0 du CGI
+              </p>
               <Link href="/outils/micro-vs-reel" className="btn btn-primary mt-4 w-full">
                 Comparer micro vs réel →
               </Link>
@@ -321,14 +315,19 @@ export default function HomePage() {
             Les réponses aux questions les plus courantes pour vous aider lors de votre déclaration de revenus.
           </p>
           <div className="faq-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'var(--space-6)' }}>
-            {faqs.map((faq, idx) => (
-              <div key={idx} className="card" style={{ padding: 'var(--space-5)', display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+            {faqEntries.map((faq) => (
+              <div key={faq.id} className="card" style={{ padding: 'var(--space-5)', display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
                 <h3 style={{ fontSize: 'var(--text-lg)', fontWeight: 700, color: 'var(--color-text)' }}>
                   {faq.question}
                 </h3>
                 <p style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--text-md)', lineHeight: '1.7' }}>
                   {faq.answer}
                 </p>
+                {faq.sourceUrl && (
+                  <p className="text-xs" style={{ color: 'var(--color-text-secondary)', marginTop: 'auto' }}>
+                    Source : <a href={faq.sourceUrl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>{faq.sourceLabel || 'source officielle'}</a>
+                  </p>
+                )}
               </div>
             ))}
           </div>
