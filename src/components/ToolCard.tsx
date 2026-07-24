@@ -14,7 +14,6 @@ export default function ToolCard({ href, icon, title, description, color = 'prim
     return (
         <Link href={href} className="card-link">
             <div className="card" style={{
-                borderLeft: `4px solid var(--color-${color})`,
                 '--card-color': `var(--color-${color})`,
                 '--card-glow': `var(--color-${color}-light)`
             } as React.CSSProperties}>
@@ -30,7 +29,6 @@ export default function ToolCard({ href, icon, title, description, color = 'prim
                             backgroundColor: `var(--color-${color})`,
                             borderColor: `var(--color-${color})`,
                             color: '#ffffff',
-                            boxShadow: `0 4px 12px var(--color-${color}-light)`
                         }}
                     >
                         Ouvrir l&apos;outil →

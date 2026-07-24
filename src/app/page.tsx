@@ -311,7 +311,7 @@ export default function HomePage() {
       <section className="section" style={{ background: 'var(--color-bg-secondary)', padding: 'var(--space-16) 0' }}>
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <h2 className="section-title text-center">Questions Fréquentes sur les Impôts (FAQ)</h2>
-          <p className="section-subtitle text-center" style={{ maxWidth: '800px', margin: '0 auto var(--space-8)' }}>
+          <p className="section-subtitle text-center" style={{ maxWidth: '640px', margin: '0 auto var(--space-8)' }}>
             Les réponses aux questions les plus courantes pour vous aider lors de votre déclaration de revenus.
           </p>
           <div className="faq-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 'var(--space-6)' }}>
