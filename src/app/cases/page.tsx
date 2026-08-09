@@ -1,18 +1,24 @@
 import type { Metadata } from 'next';
 import CasesClient from './CasesClient';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-    title: 'Dictionnaire des cases fiscales 2042 — Impôts 2025',
-    description: 'Recherchez une case fiscale par numéro (ex: 1AJ, 2CG, 7FF) ou mot-clé. Découvrez comment chaque case modifie votre impôt : salaire, revenus fonciers, cryptos...',
-    openGraph: {
-        title: 'Dictionnaire Complet des Cases Fiscales 2042',
-        description: 'Trouvez, comprenez et optimisez n’importe quelle case fiscale pour votre déclaration.',
-        url: '/cases',
-    },
-    alternates: {
-        canonical: '/cases',
-    },
-};
+const baseMetadata = createPageMetadata({
+    title: 'Dictionnaire des cases fiscales 2042 — revenus 2025',
+    description: 'Recherchez une case fiscale 2042 par numéro ou mot-clé. Comprenez son rôle, les conditions à remplir et le formulaire concerné.',
+    path: '/cases',
+    imageAlt: 'MyImpots — Dictionnaire des cases fiscales 2042',
+});
+
+export async function generateMetadata({ searchParams }: {
+    searchParams?: Promise<Record<string, string | string[] | undefined>>;
+}): Promise<Metadata> {
+    const params = await searchParams;
+    const hasFilter = Boolean(params && Object.values(params).some((value) => value !== undefined));
+
+    return hasFilter
+        ? { ...baseMetadata, robots: { index: false, follow: true } }
+        : baseMetadata;
+}
 
 export default function CasesPage() {
     const breadcrumbSchema = {

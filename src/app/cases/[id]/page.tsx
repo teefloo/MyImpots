@@ -3,6 +3,8 @@ import { notFound, permanentRedirect } from 'next/navigation';
 
 import { taxBoxes, getTaxBoxById } from '@/data/tax-boxes';
 import type { TaxBox } from '@/data/tax-boxes';
+import Link from 'next/link';
+import { createPageMetadata } from '@/lib/seo';
 import BoxDetailClient from './BoxDetailClient';
 
 export function generateStaticParams() {
@@ -43,24 +45,12 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     const title = `Case ${box.number} — ${box.label}`;
     const description = truncateAtWordBoundary(box.description, 155);
 
-    return {
+    return createPageMetadata({
         title,
         description,
-        openGraph: {
-            title: `Case ${box.number} — ${box.label} | MyImpots`,
-            description,
-            images: [{ url: '/logo.png', width: 1200, height: 630, alt: `MyImpots — Case ${box.number} : ${box.label}` }],
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: `Case ${box.number} — ${box.label} | MyImpots`,
-            description,
-            images: ['/logo.png'],
-        },
-        alternates: {
-            canonical: `/cases/${id}`,
-        },
-    };
+        path: `/cases/${box.id}`,
+        imageAlt: `MyImpots — Case ${box.number} : ${box.label}`,
+    });
 }
 
 export default async function BoxDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -132,9 +122,9 @@ export default async function BoxDetailPage({ params }: { params: Promise<{ id: 
             <section className="section" style={{ paddingBottom: 0 }}>
                 <div className="container" style={{ maxWidth: 800 }}>
                     <nav style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-4)' }}>
-                        <a href="/" style={{ color: 'var(--color-primary)', textDecoration: 'none' }}>Accueil</a>
+                        <Link href="/" style={{ color: 'var(--color-primary)', textDecoration: 'none' }}>Accueil</Link>
                         <span style={{ margin: '0 var(--space-2)' }}>/</span>
-                        <a href="/cases" style={{ color: 'var(--color-primary)', textDecoration: 'none' }}>Cases fiscales</a>
+                        <Link href="/cases" style={{ color: 'var(--color-primary)', textDecoration: 'none' }}>Cases fiscales</Link>
                         <span style={{ margin: '0 var(--space-2)' }}>/</span>
                         <span>Case {box.number}</span>
                     </nav>

@@ -18,8 +18,8 @@
 
   --color-text: #4a3f35;
   /* Deep warm brown/charcoal */
-  --color-text-secondary: #7e6e5f;
-  --color-text-tertiary: #826858;
+  --color-text-secondary: #6a5a4d;
+  --color-text-tertiary: #6b5748;
   --color-text-inverse: #ffffff;
 
   --color-border: rgba(255, 255, 255, 0.4);
@@ -27,26 +27,26 @@
   --color-border-focus: #f28482;
   /* Coral reflection */
 
-  --color-primary: #f28482;
+  --color-primary: #a95150;
   /* Coral/Peach */
-  --color-primary-hover: #e06d6a;
+  --color-primary-hover: #8f3f3e;
   --color-primary-light: rgba(242, 132, 130, 0.15);
-  --color-primary-dark: #c15b59;
+  --color-primary-dark: #853d3b;
 
   --color-accent: #f6bd60;
   /* Warm sun yellow */
   --color-accent-light: rgba(246, 189, 96, 0.15);
 
-  --color-success: #84a59d;
+  --color-success: #4e8176;
   /* Soft sage green */
   --color-success-light: rgba(132, 165, 157, 0.15);
-  --color-warning: #f2cc8f;
+  --color-warning: #9a6a25;
   /* Sand/Gold */
   --color-warning-light: rgba(242, 204, 143, 0.15);
-  --color-error: #e56b6f;
+  --color-error: #b5444d;
   /* Rose */
   --color-error-light: rgba(229, 107, 111, 0.15);
-  --color-info: #79aeb2;
+  --color-info: #4f8789;
   /* Sea glass blue */
   --color-info-light: rgba(121, 174, 178, 0.15);
 
@@ -243,12 +243,30 @@ body {
 
 a {
   color: var(--color-primary);
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
   transition: color var(--transition-fast);
 }
 
 a:hover {
   color: var(--color-primary-hover);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--color-primary-dark);
+  outline-offset: 3px;
+}
+
+.header-logo,
+.header-nav a,
+.btn,
+.badge,
+.box-card,
+.tool-card {
+  text-decoration: none;
 }
 
 img {

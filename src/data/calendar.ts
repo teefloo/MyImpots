@@ -30,7 +30,7 @@ export const calendarEvents: CalendarEvent[] = [
     },
     {
         id: 'limite-papier',
-        date: '2026-05-20',
+        date: '2026-05-19',
         title: 'Date limite — Déclaration papier',
         description:
             'Date limite pour déposer votre déclaration de revenus au format papier, quel que soit votre département de résidence. Cachet de la poste faisant foi.',

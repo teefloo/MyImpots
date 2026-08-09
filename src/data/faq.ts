@@ -46,7 +46,7 @@ export const faqEntries: FaqEntry[] = [
         id: 'dates-limites',
         question: 'Quelles sont les dates limites de déclaration en 2026 ?',
         answer:
-            'Pour la déclaration des revenus 2025 :\n• Déclaration papier : 20 mai 2026\n• En ligne, zone 1 (départements 01-19 et non-résidents) : 21 mai 2026 à 23h59\n• En ligne, zone 2 (départements 20-54) : 28 mai 2026 à 23h59\n• En ligne, zone 3 (départements 55-976) : 4 juin 2026 à 23h59',
+            'Pour la déclaration des revenus 2025 :\n• Déclaration papier : 19 mai 2026\n• En ligne, zone 1 (départements 01-19 et non-résidents) : 21 mai 2026 à 23h59\n• En ligne, zone 2 (départements 20-54) : 28 mai 2026 à 23h59\n• En ligne, zone 3 (départements 55-976) : 4 juin 2026 à 23h59',
         category: 'declaration',
         sourceUrl: 'https://www.impots.gouv.fr/particulier/la-declaration-de-revenus-en-ligne',
         sourceLabel: 'impots.gouv.fr',

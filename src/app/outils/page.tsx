@@ -2,25 +2,14 @@
 import type { Metadata } from 'next';
 import { CalculatorIcon, ScaleIcon, BuildingIcon, CoinsIcon, FileIcon } from '@/components/SVGIcons';
 import ToolCard from '@/components/ToolCard';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-    title: 'Simulateurs et Outils Fiscaux 2025 (Impôts et Déclaration)',
-    description: 'Simulateur d\'impôt sur le revenu gratuit, comparateur frais réels, calcul micro-entreprise (BIC/BNC). Tous nos outils pour réduire vos impôts 2025 en France.',
-    openGraph: {
-        title: 'Outils Fiscaux | MyImpots',
-        description: 'Simulateur d\'impôt, comparateurs frais réels vs 10%, micro vs réel, crédits d\'impôt. Tous les outils pour optimiser votre déclaration.',
-        images: [{ url: 'https://myimpots.com/logo.png', width: 1200, height: 630, alt: 'MyImpots — Outils pour votre déclaration' }],
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Outils Fiscaux | MyImpots',
-        description: 'Simulateurs et comparateurs gratuits pour votre déclaration de revenus 2025.',
-        images: ['https://myimpots.com/logo.png'],
-    },
-    alternates: {
-        canonical: '/outils',
-    },
-};
+export const metadata: Metadata = createPageMetadata({
+    title: 'Simulateurs et outils fiscaux 2026',
+    description: 'Utilisez nos simulateurs gratuits : impôt sur le revenu, frais réels, micro-BIC/BNC, crédits d’impôt et checklist des documents.',
+    path: '/outils',
+    imageAlt: 'MyImpots — Outils fiscaux 2026',
+});
 
 export default function OutilsPage() {
     const tools = [
@@ -113,6 +102,7 @@ export default function OutilsPage() {
             </div>
 
             <div className="container" style={{ paddingBottom: 'var(--space-16)' }}>
+                <h2 className="section-title">Outils disponibles</h2>
                 <div className="cards-grid">
                     {tools.map((tool) => (
                         <ToolCard key={tool.href} {...tool} />

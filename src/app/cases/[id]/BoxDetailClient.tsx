@@ -24,7 +24,7 @@ export default function BoxDetailClient({ box }: { box: TaxBox }) {
                     <div className="detail-header">
                         <div className="detail-number">{box.number}</div>
                         <div>
-                            <h1 className="detail-title">{box.label}</h1>
+                            <div className="detail-title" aria-hidden="true">{box.label}</div>
                             <div className="flex-align-center gap-2" style={{ flexWrap: 'wrap' }}>
                                 <span className="badge badge-primary">{box.formId}</span>
                                 {category && <span className="badge badge-accent">{category.icon} {category.label}</span>}

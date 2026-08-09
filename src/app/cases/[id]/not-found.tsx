@@ -1,4 +1,14 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Case fiscale introuvable',
+    description: 'La case fiscale demandée n’existe pas dans le dictionnaire MyImpots.',
+    robots: {
+        index: false,
+        follow: false,
+    },
+};
 
 import { SearchIcon } from '@/components/SVGIcons';
 

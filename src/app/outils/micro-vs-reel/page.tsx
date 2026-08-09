@@ -1,24 +1,13 @@
 import type { Metadata } from 'next';
 import MicroVsReelClient from './MicroVsReelClient';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-    title: 'Micro-BIC/BNC vs régime réel — Comparateur',
-    description: 'Auto-entrepreneurs : comparez le régime micro (abattement forfaitaire) et le régime réel (déduction des charges) pour optimiser votre imposition.',
-    openGraph: {
-        title: 'Micro vs Réel | MyImpots',
-        description: 'Comparez le régime micro-BIC/BNC et le régime réel pour déterminer le plus avantageux.',
-        images: [{ url: 'https://myimpots.com/logo.png', width: 1200, height: 630, alt: 'MyImpots — Comparateur micro vs réel' }],
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Micro vs Réel | MyImpots',
-        description: 'Auto-entrepreneurs : quel régime fiscal choisir ? Comparez micro et réel.',
-        images: ['https://myimpots.com/logo.png'],
-    },
-    alternates: {
-        canonical: '/outils/micro-vs-reel',
-    },
-};
+export const metadata: Metadata = createPageMetadata({
+    title: 'Micro-BIC/BNC ou régime réel — comparateur',
+    description: 'Comparez le régime micro et le régime réel selon votre chiffre d’affaires et vos charges pour éclairer votre choix fiscal.',
+    path: '/outils/micro-vs-reel',
+    imageAlt: 'MyImpots — Comparateur micro-BIC/BNC et réel',
+});
 
 export default function MicroVsReelPage() {
     const appSchema = {

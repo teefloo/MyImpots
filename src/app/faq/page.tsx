@@ -1,19 +1,14 @@
 import type { Metadata } from 'next';
 import FaqClient from './FaqClient';
 import { faqEntries } from '@/data/faq';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-    title: 'Foire Aux Questions (FAQ) — Impôts France 2025',
-    description: 'Toutes les réponses à vos questions sur la déclaration de revenus, les dates clés, les frais réels, le prélèvement à la source et plus encore.',
-    openGraph: {
-        title: 'Foire Aux Questions (FAQ) — Impôts France',
-        description: 'Toutes les réponses à vos questions sur la déclaration de revenus.',
-        url: '/faq',
-    },
-    alternates: {
-        canonical: '/faq',
-    },
-};
+export const metadata: Metadata = createPageMetadata({
+    title: 'FAQ impôts 2026 — déclaration des revenus 2025',
+    description: 'Réponses aux questions fréquentes sur les cases fiscales, les dates, les frais réels, le prélèvement à la source et la déclaration 2026.',
+    path: '/faq',
+    imageAlt: 'MyImpots — FAQ impôts 2026',
+});
 
 export default function FaqPage() {
     const faqSchema = {

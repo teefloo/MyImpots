@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { calendarEvents, getDepartmentZone } from '@/data/calendar';
-import { CalendarIcon, HomeIcon } from '@/components/SVGIcons';
+import { HomeIcon } from '@/components/SVGIcons';
 
 export default function CalendrierClient() {
     const [dept, setDept] = useState('');
@@ -15,16 +15,6 @@ export default function CalendrierClient() {
 
     return (
         <>
-            <div className="page-header">
-                <h1 className="page-title flex-center gap-3">
-                    <CalendarIcon size={32} className="text-primary" />
-                    Calendrier fiscal 2026
-                </h1>
-                <p className="page-description">
-                    Toutes les dates clés pour la déclaration des revenus 2025
-                </p>
-            </div>
-
             <div className="container" style={{ paddingBottom: 'var(--space-16)', maxWidth: 800 }}>
                 {/* Department selector */}
                 <div className="card mb-8">

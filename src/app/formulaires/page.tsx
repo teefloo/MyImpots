@@ -2,25 +2,14 @@ import Link from 'next/link';
 import { forms } from '@/data/forms';
 import { taxBoxes } from '@/data/tax-boxes';
 import type { Metadata } from 'next';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-    title: 'Formulaires fiscaux 2025 : 2042, 2042-C, 2044, 2047',
-    description: 'Découvrez tous les formulaires de la déclaration de revenus 2025 : 2042, 2042-C, 2042-C-PRO, 2042-RICI, 2044, 2047. Lien officiel et explication des cases.',
-    openGraph: {
-        title: 'Formulaires Fiscaux | MyImpots',
-        description: 'Retrouvez tous les formulaires de la déclaration de revenus : 2042, 2042-C, 2042-C-PRO, 2042-RICI, 2044, 2047.',
-        images: [{ url: 'https://myimpots.com/logo.png', width: 1200, height: 630, alt: 'MyImpots — Formulaires fiscaux' }],
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Formulaires Fiscaux | MyImpots',
-        description: 'Tous les formulaires de la déclaration de revenus 2025.',
-        images: ['https://myimpots.com/logo.png'],
-    },
-    alternates: {
-        canonical: '/formulaires',
-    },
-};
+export const metadata: Metadata = createPageMetadata({
+    title: 'Formulaires fiscaux 2026 — 2042, 2042-C, 2044, 2047',
+    description: 'Découvrez les formulaires de la déclaration des revenus 2025 : 2042, 2042-C, 2042-C-PRO, 2042-RICI, 2044 et 2047.',
+    path: '/formulaires',
+    imageAlt: 'MyImpots — Formulaires fiscaux 2026',
+});
 
 export default function FormulairesPage() {
     const breadcrumbSchema = {
@@ -43,6 +32,7 @@ export default function FormulairesPage() {
             </div>
 
             <div className="container" style={{ paddingBottom: 'var(--space-16)' }}>
+                <h2 className="section-title">Formulaires disponibles</h2>
                 <div className="cards-grid">
                     {forms.map((form) => {
                         const boxCount = taxBoxes.filter((b) => b.formId === form.id).length;

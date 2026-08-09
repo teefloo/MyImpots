@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, Suspense } from 'react';
 
 import { useSearchParams } from 'next/navigation';
-import { searchTaxBoxes, taxBoxes, TaxBox } from '@/data/tax-boxes';
+import { searchTaxBoxes, taxBoxes } from '@/data/tax-boxes';
 import { categories } from '@/data/categories';
 import { forms } from '@/data/forms';
 import BoxCard from '@/components/BoxCard';
@@ -13,10 +13,11 @@ function CasesContent() {
     const searchParams = useSearchParams();
     const initialQuery = searchParams.get('q') || '';
     const initialCategory = searchParams.get('category') || '';
+    const initialForm = searchParams.get('form') || '';
 
     const [query, setQuery] = useState(initialQuery);
     const [selectedCategory, setSelectedCategory] = useState(initialCategory);
-    const [selectedForm, setSelectedForm] = useState('');
+    const [selectedForm, setSelectedForm] = useState(initialForm);
 
     let displayedBoxes = taxBoxes;
 
@@ -34,6 +35,9 @@ function CasesContent() {
 
     return (
         <>
+            <h2 className="section-title" style={{ maxWidth: 1200, margin: '0 auto var(--space-6)' }}>
+                Rechercher une case fiscale
+            </h2>
             <div className="search-container mb-8">
                 <span className="search-icon"><SearchIcon size={20} /></span>
                 <input

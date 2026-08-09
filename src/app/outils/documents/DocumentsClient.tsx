@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 
-import { FileIcon } from '@/components/SVGIcons';
 import { profiles, getDocumentsForProfile } from '@/data/documents-checklist';
 
 export default function DocumentsClient() {
@@ -24,16 +23,6 @@ export default function DocumentsClient() {
 
     return (
         <>
-            <div className="page-header">
-                <h1 className="page-title flex-center gap-3">
-                    <FileIcon size={32} className="text-primary" />
-                    Documents nécessaires
-                </h1>
-                <p className="page-description">
-                    Sélectionnez votre profil et cochez les documents au fur et à mesure
-                </p>
-            </div>
-
             <div className="container" style={{ paddingBottom: 'var(--space-16)' }}>
                 {/* Profile selection */}
                 <div className="tab-filters mb-6">

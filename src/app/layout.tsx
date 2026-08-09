@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Agentation } from 'agentation';
 import { Analytics } from '@vercel/analytics/react';
+import { OG_IMAGE_PATH, SITE_URL } from '@/lib/seo';
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -12,11 +13,11 @@ export const metadata: Metadata = {
     || 'https://myimpots.com'
   ),
   title: {
-    default: 'MyImpots — Déclaration de revenus 2025 : Simulateur et aide aux cases',
+    default: 'MyImpots — Déclaration de revenus 2025 et impôts 2026',
     template: '%s | MyImpots',
   },
   description:
-    'Optimisez vos impôts 2025 avec MyImpots. Trouvez la bonne case fiscale 2042, calculez votre impôt net grâce à notre simulateur gratuit et réduisez vos impôts en toute simplicité.',
+    'Préparez votre déclaration de revenus 2025 avec MyImpots : trouvez les cases fiscales 2042 et utilisez nos simulateurs gratuits pour vos impôts 2026.',
   keywords: [
     'impôts 2025',
     'déclaration impots france',
@@ -39,9 +40,9 @@ export const metadata: Metadata = {
     siteName: 'MyImpots',
     images: [
       {
-        url: 'https://myimpots.com/logo.png',
-        width: 1200,
-        height: 630,
+        url: `${SITE_URL}${OG_IMAGE_PATH}`,
+        width: 640,
+        height: 640,
         alt: 'MyImpots — Votre déclaration de revenus, simplifiée',
         type: 'image/png',
       },
@@ -49,8 +50,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MyImpots — Optimisez et simplifiez votre déclaration de revenus 2025',
-    description: 'Simulateur gratuit, dictionnaire complet des cases 2042 et conseils fiscaux. Payez le juste impôt en 2025 au lieu de surpayer.',
+    title: 'MyImpots — Déclaration de revenus 2025 et impôts 2026',
+    description: 'Simulateur gratuit, dictionnaire des cases 2042 et aide pour préparer la déclaration 2026.',
     images: ['https://myimpots.com/logo.png'],
   },
   robots: {
@@ -83,7 +84,7 @@ const jsonLdWebSite = {
       '@id': 'https://myimpots.com/#organization',
       name: 'MyImpots',
       url: 'https://myimpots.com',
-      logo: 'https://myimpots.com/logo.png',
+      logo: `${SITE_URL}${OG_IMAGE_PATH}`,
       description: "Outils gratuits et guides pour la déclaration d'impôts en France.",
     }
   ]

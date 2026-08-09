@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { calculateTax, taxBrackets } from '@/data/tax-rates';
-import { CalculatorIcon } from '@/components/SVGIcons';
 
 const BRACKET_COLORS = ['var(--color-success)', 'var(--color-info)', 'var(--color-warning)', 'var(--color-error)', 'var(--color-primary)'];
 
@@ -43,16 +42,6 @@ export default function SimulateurClient() {
 
     return (
         <>
-            <div className="page-header">
-                <h1 className="page-title flex-center gap-3">
-                    <CalculatorIcon size={32} className="text-primary" />
-                    Simulateur d&apos;impôt sur le revenu
-                </h1>
-                <p className="page-description">
-                    Barème 2026 applicable aux revenus 2025 — Calculez votre impôt, taux marginal et taux moyen
-                </p>
-            </div>
-
             <div className="container" style={{ paddingBottom: 'var(--space-16)' }}>
                 <div className="calculator">
                     {/* Input */}

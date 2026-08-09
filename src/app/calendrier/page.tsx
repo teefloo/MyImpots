@@ -1,25 +1,13 @@
 import type { Metadata } from 'next';
 import CalendrierClient from './CalendrierClient';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-    title: 'Calendrier fiscal 2026 | Dates importantes de la déclaration',
-    description: 'Ouverture, date limite selon votre département (zones 1, 2, 3), délais de correction. Tout le calendrier de la déclaration de revenus 2025 (en 2026).',
-    openGraph: {
-        title: 'Calendrier fiscal 2026 : les dates à ne pas manquer',
-        description: 'Toutes les dates de la déclaration des revenus en France.',
-        url: '/calendrier',
-        images: [{ url: 'https://myimpots.com/logo.png', width: 1200, height: 630, alt: 'MyImpots — Calendrier fiscal' }],
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Calendrier fiscal 2026 | MyImpots',
-        description: 'Ouverture, date limite par zone, délais de correction. Ne manquez aucune échéance.',
-        images: ['https://myimpots.com/logo.png'],
-    },
-    alternates: {
-        canonical: '/calendrier',
-    },
-};
+export const metadata: Metadata = createPageMetadata({
+    title: 'Calendrier fiscal 2026 — déclaration des revenus 2025',
+    description: 'Retrouvez l’ouverture, la date papier du 19 mai, les dates en ligne par zone et les principales échéances fiscales 2026.',
+    path: '/calendrier',
+    imageAlt: 'MyImpots — Calendrier fiscal 2026',
+});
 
 export default function CalendrierPage() {
     const breadcrumbSchema = {
@@ -37,7 +25,7 @@ export default function CalendrierPage() {
             <div className="page-header">
                 <h1 className="page-title">Calendrier fiscal 2026</h1>
                 <p className="page-description">
-                    Toutes les dates clés de la déclaration de revenus 2025 : ouverture le 10 avril, date limite par zone (1er, 26 mai, 8 juin) et délais de télédéclaration.
+                    Toutes les dates clés de la déclaration de revenus 2025 : ouverture le 9 avril, date papier le 19 mai, puis dates limites en ligne par zone.
                 </p>
             </div>
             <div className="container" style={{ paddingBottom: 'var(--space-16)' }}>

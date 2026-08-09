@@ -1,24 +1,13 @@
 import type { Metadata } from 'next';
 import CreditsImpotClient from './CreditsImpotClient';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-    title: 'Simulateur crédits et réductions d\'impôt',
-    description: 'Estimez vos crédits et réductions d\'impôt : emploi à domicile, garde d\'enfants, dons, investissements PME. Vérifiez le plafonnement des niches fiscales.',
-    openGraph: {
-        title: 'Crédits et Réductions d\'Impôt | MyImpots',
-        description: 'Simulez vos avantages fiscaux : emploi à domicile, garde, dons, PME. Plafonnement des niches fiscales inclus.',
-        images: [{ url: 'https://myimpots.com/logo.png', width: 1200, height: 630, alt: 'MyImpots — Simulateur crédits d\'impôt' }],
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Crédits et Réductions d\'Impôt | MyImpots',
-        description: 'Estimez vos avantages fiscaux et vérifiez le plafonnement des niches fiscales.',
-        images: ['https://myimpots.com/logo.png'],
-    },
-    alternates: {
-        canonical: '/outils/credits-impot',
-    },
-};
+export const metadata: Metadata = createPageMetadata({
+    title: 'Simulateur de crédits et réductions d’impôt',
+    description: 'Estimez vos crédits et réductions d’impôt pour l’emploi à domicile, la garde d’enfants, les dons et les investissements.',
+    path: '/outils/credits-impot',
+    imageAlt: 'MyImpots — Simulateur de crédits et réductions d’impôt',
+});
 
 export default function CreditsImpotPage() {
     const appSchema = {

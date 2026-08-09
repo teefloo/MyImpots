@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { PLAFOND_AVANTAGES_FISCAUX } from '@/data/tax-rates';
-import { CoinsIcon } from '@/components/SVGIcons';
 
 export default function CreditsImpotClient() {
     const [emploiDomicile, setEmploiDomicile] = useState('');
@@ -65,16 +64,6 @@ export default function CreditsImpotClient() {
 
     return (
         <>
-            <div className="page-header">
-                <h1 className="page-title flex-center gap-3">
-                    <CoinsIcon size={32} className="text-primary" />
-                    Simulateur de crédits et réductions d&apos;impôt
-                </h1>
-                <p className="page-description">
-                    Estimez vos avantages fiscaux et vérifiez le plafonnement des niches fiscales
-                </p>
-            </div>
-
             <div className="container" style={{ paddingBottom: 'var(--space-16)' }}>
                 <div className="calculator">
                     <div className="calculator-input">

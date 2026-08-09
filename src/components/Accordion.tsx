@@ -10,22 +10,24 @@ export interface AccordionProps {
     onClick: () => void;
 }
 
-export function Accordion({ title, content, isOpen, onClick }: AccordionProps) {
+export function Accordion({ id, title, content, isOpen, onClick }: AccordionProps) {
+    const contentId = `accordion-content-${id}`;
+
     return (
         <div className="accordion-item">
             <button
+                type="button"
                 className="accordion-header"
                 onClick={onClick}
                 aria-expanded={isOpen}
+                aria-controls={contentId}
             >
                 <span>{title}</span>
                 <span className={`accordion-icon ${isOpen ? 'open' : ''}`}>▼</span>
             </button>
-            {isOpen && (
-                <div className="accordion-content">
-                    {content}
-                </div>
-            )}
+            <div id={contentId} className="accordion-content" hidden={!isOpen}>
+                {content}
+            </div>
         </div>
     );
 }
