@@ -2,16 +2,11 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Agentation } from 'agentation';
-import { Analytics } from '@vercel/analytics/react';
 import { OG_IMAGE_PATH, SITE_URL } from '@/lib/seo';
+import DeferredAnalytics from '@/components/DeferredAnalytics';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL
-    || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : null)
-    || 'https://myimpots.com'
-  ),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'MyImpots — Déclaration de revenus 2025 et impôts 2026',
     template: '%s | MyImpots',
@@ -33,8 +28,8 @@ export const metadata: Metadata = {
     'optimisation fiscale france',
   ],
   openGraph: {
-    title: 'MyImpots — Optimisez et simplifiez votre déclaration de revenus 2025',
-    description: 'Ne payez plus un centime de trop ! Simulez vos impôts, trouvez les cases 2042 et optimisez votre fiscalité avec le guide gratuit MyImpots.',
+    title: 'MyImpots — Déclaration de revenus 2025 et impôts 2026',
+    description: 'Préparez votre déclaration de revenus 2025, trouvez les cases 2042 et utilisez les outils gratuits MyImpots pour comprendre vos impôts 2026.',
     type: 'website',
     locale: 'fr_FR',
     siteName: 'MyImpots',
@@ -110,10 +105,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="main-content">{children}</main>
           <Footer />
         </div>
-        {process.env.NODE_ENV === 'development' && !process.env.VERCEL && (
-          <Agentation endpoint="http://localhost:4747" />
-        )}
-        <Analytics />
+        <DeferredAnalytics />
       </body>
     </html>
   );

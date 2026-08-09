@@ -637,7 +637,7 @@ export const taxBoxes: TaxBox[] = [
         label: 'Revenus des valeurs mobilières',
         formId: '2047',
         categoryId: 'revenus-etrangers',
-        description: 'Dividendes, intérêts et autres produits de source étrangère. À reporter ensuite sur la 2042 (cases 2DC, 2TR, etc.) et/ou pour le calcul du crédit d\'impôt (case 2AB).',
+        description: 'Dividendes, intérêts et autres produits de source étrangère. À reporter ensuite sur la 2042, notamment en cases 2DC, 2TR et 2AB selon la nature du revenu.',
         relatedBoxes: ['2DC', '2TR', '2AB'],
         keywords: ['dividendes', 'intérêts', 'étranger', 'comptes titres'],
     },

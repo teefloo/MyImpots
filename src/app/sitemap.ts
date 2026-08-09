@@ -8,9 +8,9 @@ const BASE_URL = 'https://myimpots.com';
 // trains crawlers to distrust the freshness signal. Update the relevant date
 // here when you meaningfully change a page's content.
 const LAST_MODIFIED = {
-    home: new Date('2026-03-23'),
-    tools: new Date('2026-04-27'),
-    taxBoxes: new Date('2026-04-27'),
+    home: new Date('2026-08-09'),
+    tools: new Date('2026-08-09'),
+    taxBoxes: new Date('2026-08-09'),
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {

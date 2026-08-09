@@ -103,6 +103,9 @@ export default function BoxDetailClient({ box }: { box: TaxBox }) {
                             <a href={form.officialUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary mt-4" style={{ width: '100%', fontSize: 'var(--text-xs)' }}>
                                 Formulaire officiel ↗
                             </a>
+                            <Link href="/formulaires" className="btn btn-secondary mt-2" style={{ width: '100%', fontSize: 'var(--text-xs)' }}>
+                                Voir tous les formulaires
+                            </Link>
                         </div>
                     )}
                     <div className="mt-4">

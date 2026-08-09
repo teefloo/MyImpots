@@ -42,8 +42,17 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     const { id } = await params;
     const box = getTaxBoxByCanonicalId(id);
 
-    const title = `Case ${box.number} — ${box.label}`;
-    const description = truncateAtWordBoundary(box.description, 155);
+    const formSuffix = ` | ${box.formId}`;
+    const titleSource = `Case ${box.number} : ${box.label}`;
+    const title = `${truncateAtWordBoundary(titleSource, 50 - formSuffix.length)}${formSuffix}`;
+    const descriptionSource = `Case ${box.number} du formulaire ${box.formId}. ${box.description}`;
+    const enrichedDescription = descriptionSource.length < 120
+        ? `${descriptionSource} Consultez aussi les conditions et les cases associées.`
+        : descriptionSource;
+    const description = truncateAtWordBoundary(
+        enrichedDescription,
+        150,
+    );
 
     return createPageMetadata({
         title,
