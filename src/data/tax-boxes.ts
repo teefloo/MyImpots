@@ -10,6 +10,9 @@ export interface TaxBox {
     relatedBoxes?: string[];
     officialRef?: string;
     keywords: string[];
+    seoTitle?: string;
+    seoDescription?: string;
+    seoIntro?: string;
 }
 
 export const taxBoxes: TaxBox[] = [
@@ -160,9 +163,17 @@ export const taxBoxes: TaxBox[] = [
         label: 'Pensions de retraite — Déclarant 1',
         formId: '2042',
         categoryId: 'revenus-salaires',
-        description: 'Total des pensions de retraite et rentes viagères à titre gratuit perçues en 2025 (régime général, complémentaire AGIRC-ARRCO, etc.). Un abattement de 10 % est appliqué automatiquement (minimum 442 €, maximum 4 321 € par foyer).',
+        description: 'Total des pensions de retraite et rentes viagères à titre gratuit perçues en 2025 (régime général, complémentaire AGIRC-ARRCO, etc.). Un abattement de 10 % est appliqué automatiquement, avec un minimum de 454 € par titulaire et un maximum de 4 439 € par foyer pour les revenus 2025.',
+        examples: [
+            'Une retraite complémentaire du déclarant 1 se vérifie et se corrige dans la case 1AS si le montant prérempli est inexact.',
+            'La case 1BS est utilisée pour les pensions du déclarant 2 : ne regroupez pas les deux montants dans 1AS.',
+        ],
+        eligibility: 'Concerne les pensions, retraites et rentes imposables du déclarant 1. Le montant est en principe prérempli, mais doit être contrôlé avant la validation de la déclaration.',
         relatedBoxes: ['1BS'],
         keywords: ['pension', 'retraite', 'CNAV', 'AGIRC', 'ARRCO'],
+        seoTitle: 'Case 1AS : pension de retraite | 2042',
+        seoDescription: 'Case 1AS : pensions de retraite du déclarant 1, montant prérempli, abattement de 10 % et différence avec la case 1BS.',
+        seoIntro: 'La case 1AS de la déclaration 2042 sert à déclarer les pensions de retraite et rentes imposables du déclarant 1. Le montant est généralement prérempli : vérifiez-le avant de valider votre déclaration.',
     },
     {
         id: '2042-1BS',
@@ -195,7 +206,7 @@ export const taxBoxes: TaxBox[] = [
         categoryId: 'revenus-capitaux',
         description: 'Dividendes et distributions perçus de sociétés françaises ou étrangères. Par défaut soumis au PFU (prélèvement forfaitaire unique) de 30 % (12,8 % IR + 17,2 % PS). Option possible pour le barème progressif avec abattement de 40 %.',
         examples: ['Dividendes reçus de votre SCI : reporter le montant en 2DC', 'Le montant est pré-rempli par la banque via l\'IFU'],
-        relatedBoxes: ['2OP'],
+        relatedBoxes: ['2AB', '2TR', '2OP'],
         keywords: ['dividendes', 'actions', 'PFU', 'flat tax', 'distribution'],
     },
     {
@@ -205,7 +216,8 @@ export const taxBoxes: TaxBox[] = [
         formId: '2042',
         categoryId: 'revenus-capitaux',
         description: 'Intérêts de comptes courants, obligations, comptes à terme et autres produits de placement à revenu fixe. Soumis au PFU de 30 % par défaut. Les intérêts de livrets réglementés (Livret A, LDDS, LEP) sont exonérés et ne doivent pas être déclarés.',
-        keywords: ['intérêts', 'placement', 'obligations', 'compte courant'],
+        relatedBoxes: ['2DC', '2AB'],
+        keywords: ['intérêts', 'placement', 'obligations', 'compte courant', 'revenus étrangers'],
     },
     {
         id: '2042-2OP',
@@ -224,7 +236,10 @@ export const taxBoxes: TaxBox[] = [
         formId: '2042',
         categoryId: 'revenus-capitaux',
         description: 'Crédit d\'impôt représentatif de l\'impôt retenu à la source à l\'étranger sur les dividendes et intérêts de source étrangère, en application des conventions fiscales internationales.',
-        keywords: ['crédit impôt étranger', 'retenue source', 'convention fiscale'],
+        examples: ['Après avoir renseigné le revenu étranger sur la déclaration 2047, reportez le crédit d\'impôt correspondant dans la case indiquée par la notice, notamment 2AB selon la situation.'],
+        eligibility: 'Concerne les revenus de source étrangère pour lesquels une convention fiscale prévoit un crédit d\'impôt au titre de l\'impôt payé à l\'étranger.',
+        relatedBoxes: ['2DC', '2TR'],
+        keywords: ['crédit impôt étranger', 'retenue source', 'convention fiscale', '2AB', '2047'],
     },
 
     // ═══════════════════════════════════════
@@ -413,8 +428,15 @@ export const taxBoxes: TaxBox[] = [
         categoryId: 'credits',
         description: 'Frais de garde hors du domicile du 1er enfant de moins de 6 ans au 1er janvier 2025. Crédit d\'impôt de 50 % des dépenses retenues dans la limite de 3 500 € par enfant, soit un crédit maximum de 1 750 €.',
         eligibility: 'Enfant < 6 ans au 01/01/2025. Garde en crèche, halte-garderie, assistante maternelle agréée, garderie périscolaire.',
+        examples: [
+            '2 400 € de dépenses éligibles après déduction des aides → crédit d\'impôt de 1 200 €.',
+            '4 000 € de dépenses éligibles → base retenue plafonnée à 3 500 €, soit un crédit maximal de 1 750 €.',
+        ],
         relatedBoxes: ['7GB', '7GC'],
         keywords: ['garde enfants', 'crèche', 'assistante maternelle', 'frais garde'],
+        seoTitle: 'Case 7GA : frais de garde | 2042-RICI',
+        seoDescription: 'Case 7GA : frais de garde du 1er enfant de moins de 6 ans, dépenses éligibles, plafond de 3 500 € et crédit maximal de 1 750 €.',
+        seoIntro: 'La case 7GA de la déclaration 2042-RICI concerne les frais de garde du premier enfant de moins de 6 ans gardé hors du domicile. Elle ouvre droit à un crédit d’impôt sous conditions.',
     },
     {
         id: '2042RICI-7GB',
@@ -433,8 +455,16 @@ export const taxBoxes: TaxBox[] = [
         formId: '2042-RICI',
         categoryId: 'reductions',
         description: 'Nombre d\'enfants à charge poursuivant des études au collège au 31 décembre 2025. Réduction d\'impôt forfaitaire de 61 € par enfant.',
+        examples: [
+            'Un enfant à charge scolarisé au collège au 31 décembre 2025 → inscrire 1 en case 7EA.',
+            'Deux enfants à charge au collège → inscrire 2 en case 7EA ; la réduction forfaitaire correspondante est de 61 € par enfant.',
+        ],
+        eligibility: 'Concerne un enfant à charge ou rattaché qui poursuit ses études au collège au 31 décembre 2025. En résidence alternée ou à charge partagée, la réduction est divisée par deux.',
         relatedBoxes: ['7EC', '7EF'],
         keywords: ['scolarité', 'collège', 'études', 'enfants'],
+        seoTitle: 'Case 7EA : enfant au collège | 2042-RICI',
+        seoDescription: 'Case 7EA : nombre d’enfants au collège, réduction de 61 € par enfant et distinction avec les cases 7EC et 7EF de la 2042-RICI.',
+        seoIntro: 'La case 7EA de la déclaration 2042-RICI sert à indiquer le nombre d’enfants à charge ou rattachés qui poursuivent leurs études au collège au 31 décembre 2025.',
     },
     {
         id: '2042RICI-7EC',
@@ -637,9 +667,18 @@ export const taxBoxes: TaxBox[] = [
         label: 'Revenus des valeurs mobilières',
         formId: '2047',
         categoryId: 'revenus-etrangers',
-        description: 'Dividendes, intérêts et autres produits de source étrangère. À reporter ensuite sur la 2042, notamment en cases 2DC, 2TR et 2AB selon la nature du revenu.',
+        description: 'Dividendes, intérêts et autres revenus de capitaux mobiliers de source étrangère. Commencez par la déclaration 2047, puis reportez les montants sur la 2042 ou la 2042-C dans les cases appropriées, notamment 2DC, 2TR et 2AB selon la nature du revenu et le crédit d\'impôt applicable.',
+        examples: [
+            'Dividendes étrangers : renseignez d’abord le revenu sur la 2047, puis reportez-le dans la case de la 2042 indiquée par la notice, notamment 2DC lorsque cela s’applique.',
+            'Intérêts et autres produits de placement étrangers : vérifiez la case de report correspondante, notamment 2TR selon la nature du revenu.',
+            'Impôt payé à l’étranger : reportez le crédit d’impôt correspondant dans la case prévue, notamment 2AB selon la convention fiscale et la notice.',
+        ],
+        eligibility: 'Cette annexe concerne notamment les foyers domiciliés en France qui ont perçu des revenus hors de France ou des revenus de source étrangère. Les règles de report dépendent du pays et de la convention fiscale applicable.',
         relatedBoxes: ['2DC', '2TR', '2AB'],
-        keywords: ['dividendes', 'intérêts', 'étranger', 'comptes titres'],
+        keywords: ['dividendes', 'intérêts', 'étranger', 'comptes titres', '2047', '2AB', '2DC', '2TR'],
+        seoTitle: 'Rubrique 2 de la 2047 : revenus étrangers',
+        seoDescription: 'Rubrique 2 de la déclaration 2047 : dividendes et intérêts étrangers à reporter vers les cases 2AB, 2DC ou 2TR de la 2042.',
+        seoIntro: 'La rubrique 2 de l’annexe 2047 concerne les dividendes, intérêts et autres revenus de capitaux mobiliers de source étrangère. Elle sert de point de départ avant le report sur la déclaration 2042.',
     },
     {
         id: '2047-8',

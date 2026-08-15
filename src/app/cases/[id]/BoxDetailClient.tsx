@@ -73,7 +73,7 @@ export default function BoxDetailClient({ box }: { box: TaxBox }) {
                 <div className="detail-sidebar">
                     <h3 style={{ fontWeight: 600, marginBottom: 'var(--space-4)' }}>Informations</h3>
                     <div className="result-row">
-                        <span className="result-row-label">Case</span>
+                        <span className="result-row-label">{box.number.startsWith('Rubrique') ? 'Rubrique' : 'Case'}</span>
                         <span className="result-row-value">{box.number}</span>
                     </div>
                     <div className="result-row">

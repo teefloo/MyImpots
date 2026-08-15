@@ -10,7 +10,7 @@ const BASE_URL = 'https://myimpots.com';
 const LAST_MODIFIED = {
     home: new Date('2026-08-09'),
     tools: new Date('2026-08-09'),
-    taxBoxes: new Date('2026-08-09'),
+    taxBoxes: new Date('2026-08-15'),
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {

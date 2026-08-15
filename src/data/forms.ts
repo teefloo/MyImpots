@@ -59,7 +59,7 @@ export const forms: TaxForm[] = [
         title: 'Déclaration des revenus encaissés à l\'étranger',
         description:
             'Formulaire pour déclarer les revenus de source étrangère percus par un résident fiscal français. Les montants déclarés sont ensuite reportés sur la déclaration 2042 ou 2042-C selon leur nature, avec application des conventions fiscales internationales.',
-        officialUrl: 'https://www.impots.gouv.fr/recherche/2047',
+        officialUrl: 'https://www.impots.gouv.fr/formulaire/2047/declaration-des-revenus-encaisses-letranger',
         categoryIds: ['revenus-etrangers'],
     },
 ];

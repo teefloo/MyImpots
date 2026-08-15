@@ -3,6 +3,7 @@ import { notFound, permanentRedirect } from 'next/navigation';
 
 import { taxBoxes, getTaxBoxById } from '@/data/tax-boxes';
 import type { TaxBox } from '@/data/tax-boxes';
+import { getFormById } from '@/data/forms';
 import Link from 'next/link';
 import { createPageMetadata } from '@/lib/seo';
 import BoxDetailClient from './BoxDetailClient';
@@ -38,14 +39,19 @@ function getTaxBoxByCanonicalId(id: string): TaxBox {
     notFound();
 }
 
+function getBoxDisplayName(box: TaxBox): string {
+    return box.number.startsWith('Rubrique') ? box.number : `Case ${box.number}`;
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
     const { id } = await params;
     const box = getTaxBoxByCanonicalId(id);
 
     const formSuffix = ` | ${box.formId}`;
-    const titleSource = `Case ${box.number} : ${box.label}`;
-    const title = `${truncateAtWordBoundary(titleSource, 50 - formSuffix.length)}${formSuffix}`;
-    const descriptionSource = `Case ${box.number} du formulaire ${box.formId}. ${box.description}`;
+    const displayName = getBoxDisplayName(box);
+    const titleSource = `${displayName} : ${box.label}`;
+    const title = box.seoTitle ?? `${truncateAtWordBoundary(titleSource, 50 - formSuffix.length)}${formSuffix}`;
+    const descriptionSource = box.seoDescription ?? `${displayName} du formulaire ${box.formId}. ${box.description}`;
     const enrichedDescription = descriptionSource.length < 120
         ? `${descriptionSource} Consultez aussi les conditions et les cases associées.`
         : descriptionSource;
@@ -65,6 +71,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 export default async function BoxDetailPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const box = getTaxBoxByCanonicalId(id);
+    const form = getFormById(box.formId);
+    const displayName = getBoxDisplayName(box);
+    const intro = box.seoIntro ?? `${displayName} du formulaire ${box.formId} : retrouvez ci-dessous les conditions d'éligibilité, les montants à renseigner et les conseils pour compléter votre déclaration.`;
 
     const breadcrumbSchema = {
         '@context': 'https://schema.org',
@@ -85,8 +94,8 @@ export default async function BoxDetailPage({ params }: { params: Promise<{ id: 
             {
                 '@type': 'ListItem',
                 position: 3,
-                name: `Case ${box.number}`,
-                item: `https://myimpots.com/cases/${id}`
+                name: displayName,
+                item: `https://myimpots.com/cases/${box.id}`
             }
         ]
     };
@@ -97,7 +106,7 @@ export default async function BoxDetailPage({ params }: { params: Promise<{ id: 
         mainEntity: [
             {
                 '@type': 'Question',
-                name: `Qu'est-ce que la case ${box.number} — ${box.label} ?`,
+                name: `Qu'est-ce que ${displayName.toLowerCase()} — ${box.label} ?`,
                 acceptedAnswer: {
                     '@type': 'Answer',
                     text: box.description,
@@ -107,7 +116,7 @@ export default async function BoxDetailPage({ params }: { params: Promise<{ id: 
                 ? [
                     {
                         '@type': 'Question',
-                        name: `Qui est éligible à la case ${box.number} ?`,
+                        name: `Qui est concerné par ${displayName.toLowerCase()} ?`,
                         acceptedAnswer: {
                             '@type': 'Answer',
                             text: box.eligibility,
@@ -135,16 +144,16 @@ export default async function BoxDetailPage({ params }: { params: Promise<{ id: 
                         <span style={{ margin: '0 var(--space-2)' }}>/</span>
                         <Link href="/cases" style={{ color: 'var(--color-primary)', textDecoration: 'none' }}>Cases fiscales</Link>
                         <span style={{ margin: '0 var(--space-2)' }}>/</span>
-                        <span>Case {box.number}</span>
+                        <span>{displayName}</span>
                     </nav>
                     <h1 style={{ fontSize: 'var(--text-2xl)', fontWeight: 800, marginBottom: 'var(--space-3)' }}>
-                        Case {box.number} : {box.label}
+                        {displayName} : {box.label}
                     </h1>
                     <p style={{ color: 'var(--color-text-secondary)', lineHeight: 1.7, marginBottom: 'var(--space-2)' }}>
-                        La case <strong>{box.number}</strong> du formulaire 2042 est utilisée pour déclarer {box.label.toLowerCase()}. Retrouvez ci-dessous les conditions d&apos;éligibilité, les montants à renseigner et les conseils pour compléter votre déclaration.
+                        {intro}
                     </p>
                     <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>
-                        Référence officielle : <a href="https://www.impots.gouv.fr/formulaire/2042/declaration-des-revenus" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>formulaire 2042 — impots.gouv.fr</a>
+                        Référence officielle : <a href={form?.officialUrl ?? 'https://www.impots.gouv.fr/formulaire/2042/declaration-des-revenus'} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>formulaire {box.formId} — impots.gouv.fr</a>
                     </p>
                 </div>
             </section>
