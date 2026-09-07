@@ -1,5 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { taxBoxes } from '@/data/tax-boxes';
+import { categories } from '@/data/categories';
+import { getCategoryPagePath } from '@/lib/case-routes';
 
 const BASE_URL = 'https://myimpots.com';
 
@@ -10,6 +12,7 @@ const BASE_URL = 'https://myimpots.com';
 const LAST_MODIFIED = {
     home: new Date('2026-08-09'),
     tools: new Date('2026-08-09'),
+    categories: new Date('2026-09-07'),
     taxBoxes: new Date('2026-08-15'),
 };
 
@@ -92,5 +95,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.5,
     }));
 
-    return [...staticPages, ...taxBoxPages];
+    const categoryPages: MetadataRoute.Sitemap = categories
+        .filter((category) => taxBoxes.some((box) => box.categoryId === category.id))
+        .map((category) => ({
+            url: `${BASE_URL}${getCategoryPagePath(category.id)}`,
+            lastModified: LAST_MODIFIED.categories,
+            changeFrequency: 'monthly' as const,
+            priority: 0.7,
+        }));
+
+    return [...staticPages, ...categoryPages, ...taxBoxPages];
 }

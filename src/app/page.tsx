@@ -15,6 +15,7 @@ import { forms } from '@/data/forms';
 import { faqEntries } from '@/data/faq';
 import { CalculatorIcon, ScaleIcon, BuildingIcon, CoinsIcon, FileIcon, CalendarIcon, BarChartIcon, FileTextIcon } from '@/components/SVGIcons';
 import ToolCard from '@/components/ToolCard';
+import { getCategoryPagePath } from '@/lib/case-routes';
 
 export default function HomePage() {
 
@@ -145,10 +146,10 @@ export default function HomePage() {
             Toutes les cases de la déclaration 2042 expliquées simplement et classées par catégorie.
           </p>
           <div className="cards-grid">
-            {categories.map((cat) => (
+            {categories.filter((cat) => taxBoxes.some((box) => box.categoryId === cat.id)).map((cat) => (
               <ToolCard
                 key={cat.id}
-                href={`/cases?category=${cat.id}`}
+                href={getCategoryPagePath(cat.id)}
                 icon={cat.icon}
                 title={cat.label}
                 description={cat.description}
